@@ -8,7 +8,7 @@ type Props = {
 
 function Button({ label, onClick }: Props) {
     return (
-        <button onClick={onClick}>{label}</button>
+        <button className='text-white bg-blue-600' onClick={onClick}>{label}</button>
     )
 }
 

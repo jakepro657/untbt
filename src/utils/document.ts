@@ -1,0 +1,37 @@
+import { GPT_SEMANTIC_SEARCH_PROMPT } from "@/constant/prompt";
+import OpenAI from "openai";
+
+class GPT {
+
+    private apiKey: string | undefined;
+    private openai: OpenAI;
+
+    constructor() {
+        this.apiKey = process.env.OPENAI_API_KEY;
+        this.openai = new OpenAI({
+            apiKey: process.env.OPENAI_API_KEY
+        })
+    }
+
+    public async getResponse(text: string): Promise<string | null> {
+        const GPTResponse = await this.openai.chat.completions.create({
+            model: "gpt-4o",
+            messages: [
+                {
+                    role: "system",
+                    content: GPT_SEMANTIC_SEARCH_PROMPT
+                },
+                {
+                    role: "user",
+                    content: text
+                }
+            ]
+        })
+
+        return GPTResponse.choices[0].message.content;
+    }
+}
+
+const GPT_INSTANCE = new GPT();
+
+export default GPT_INSTANCE;
