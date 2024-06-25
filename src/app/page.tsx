@@ -21,7 +21,7 @@ export default function Home() {
         "Content-Type": "application/json"
       },
       body: JSON.stringify({
-        text: "ACE"
+        text: tbt
       })
     });
 
