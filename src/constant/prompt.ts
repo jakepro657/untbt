@@ -89,18 +89,20 @@ export const GPT_SEMANTIC_SEARCH_PROMPT = `
         81. Other Base Metals; Cermets; Articles Thereof
         82. Tools, İmplements, Cutlery, Spoons and Forks, Of Base Metal; Parts Thereof Of Base Metal
         83. Miscellaneous Articles Of Base Meta49. 
-        49/.Vehicles Other Than Railway or Tramway Rolling Stock, and Parts and Accessories Thereof
-        50. Vehicles Other Than Railway or Tramway Rolling Stock, and Parts and Accessories Thereof
-        51. Vehicles Other Than Railway or Tramway Rolling Stock, and Parts and Accessories Thereof
-        52. Vehicles Other Than Railway or Tramway Rolling Stock, and Parts and Accessories Thereof
-        Vehicles Other Than Railway or Tramway Rolling Stock, and Parts and Accessories Thereof53. Vehicles Other Than Railway or Tramway Rolling Stock, and Parts and Accessories Thereof
-        54. Vehicles Other Than Railway or Tramway Rolling Stock, and Parts and Accessories Thereof
-        55. . 
         84. Nuclear Reactors, Boilers, Machinery and Mechanical Appliances; Parts Thereof
         85. Electrical Machinery and Equipment and Parts Thereof; Sound Recorders and Reproducers, Television İmage and Sound Recorders and Reproducers, and Parts and Accessories Of Such Articles
         86. Railway or Tramway Locomotives, Rolling-Stock and Parts Thereof; Railway or Tramway Track Fixtures and Fittings and Parts Thereof; Mechanical (İncluding Electro-Mechanical) Traffic Signalling Equipment Of All Kinds
         87. Vehicles Other Than Railway or Tramway Rolling Stock, and Parts and Accessories Thereof
-        88. 
+        88. Aircraft, Spacecraft, and Parts Thereof
+        89. Ships, Boats and Floating Structures
+        90. Optical, Photographic, Cinematographic, Measuring, Checking, Precision, Medical or Surgical İnstruments and Apparatus; Parts and Accessories Thereof
+        91. Clocks and Watches and Parts Thereof
+        92. Musical İnstruments; Parts and Accessories Of Such Articles
+        93. Arms and Ammunition; Parts and Accessories Thereof
+        94. Furniture; Bedding, Mattresses, Mattress Supports, Cushions and Similar Stuffed Furnishings; Lamps and Lighting Fittings, Not Elsewhere Specified or İncluded; İlluminated Sign İlluminated Nameplates and The Like; Prefabricated Buildings
+        95. Toys, Games and Sports Requisites; Parts and Accessories Thereof
+        96. Miscellaneous Manufactured Articles
+        97. Works Of Art, Collectors' Pieces and Antiques
     </Instructions>
 `
 
@@ -115,27 +117,27 @@ export const GPT_SEMANTIC_FILTER_PROMPT = `
         *** VERY IMPORTANT ***: JUST ANSWER ONLY WITH A LIST OF KEYWORDS.
         IMPORTANT: You have to extract all kewords related to the following category. 
         IMPORTANT: You have to reduce the keywords that are relatively less relevant to the following category to five or less.
-        1 Living animals and Animal Products 
-        2 Vegetable Products 
-        3 Animal Products. Vegetable fats and oils and their decomposition products, prepared edible fats and animal lead 
-        4 preparation food, beverage, liquor, vinegar, tobacco, manufactured tobacco substitutes 
-        5 Mineral products 
-        6 Products produced by chemical or related industries 
-        7 Plastic and its products, rubber and its products 
-        8 Products of pre-skin, leather, fur, and their products, harnesses, travel equipment, handbags and similar containers, animal gut [excluding silkworm gut]
-        9 Wood and its products, charcoal, cork and other products, straw and esparto, or other structural materials, basketware and earthenware
-        10 Pulp of wood or other fiber cellulose materials, recovered paper and cardboard [waste and scrap], paper and cardboard and their products
-        11 Textile fiber and textiles fiber products
-        12 Footwear, hats, acids, sticks, sheets, sticks, whips, horseback riding whips and their parts, and their parts, manufactured feathers and their products, harmonies, and human hair products
-        13 stone, plastersr, Cement and asbestos. products of mica or similar materials, ceramic products, glass and glass products
-        14 Natural pearls, Western pearls, precious stones, semi-precious stones. Metals coated with precious metals and their products, imitation new decorative items, coins
-        15 Non-metals and their products
-        16 Machinery and electric devices and parts, recorders, audio reproducers, video and sound recorders on televisions. Accessories 
-        17 Vehicle and aircraft related to ships and transport aircraft.
-        18 Optical instruments for photography, movie equipment, measuring equipment Inspection equipment Precision equipment Medical equipment, watches, musical instruments, their parts and accessories
-        19 Weapons, gun shells and their parts and accessories 
-        20 sundries
-        21 Art supplies. Collections · Antiques
+        1 Live Animals, Animal Products 
+        2 Fresh Fruits and Vegetables & Other Vegetable Products
+        3 Animal and Vegetable Fats & Oils, Prepared Edible Fats, Animal Or Vegetable Waxes
+        4 Prepared Foodstuffs, Beverages, Spirits, Vinegar & Tobacco Products
+        5 Mineral Products 
+        6 Chemical Products
+        7 Plastic and Rubber Products
+        8 Leather, Handbags,Travel Goods, Saddlery, Harness, Raw Hides and Skins, Furskins & Animal Gut Products
+        9 Wood & Wood Products, Wood Charcoal, Cork, Basketware, Wickerwork
+        10 Paper & Paperboard Products, Wood Pulp, Paper Waste & Scrap
+        11 Textile, Clothing & Home Textiles
+        12 Footwear, Headgear, Artificial Flowers, Umbrellas, Walking Sticks, Seatsticks, Whips, Riding-Crops, Prepared Feathers, Human Hair Products
+        13 Stone, Marble, Plaster, Cement, Asbestos, Mica Products,Ceramic Products, Glass & Glassware
+        14 NJewelry, Precious Metals, Precious&Semiprecious Stones, Pearls, Imitation Jewelry, Coin
+        15 Metals & Metal Products
+        16 Machinery, Electronics, Electrical Equipment
+        17 Vehicles, Aircraft, Vessels & Other Transport Equipment
+        18 Antiques, Art Works, Collectors' Pieces
+        19 Medical Instruments, Optical, Photographic, Cinematographic, Measuring, Checking, Precision Instruments, Clocks&Watches, Musical instruments
+        20 Arms And Ammunition
+        21 Furniture, Bedding, Mattresses, Cushions, Lamps and Lighting Fittings, İlluminated Signs, Prefabricated Buildings & Miscellaneous Products
         
     </Instructions>
 `
