@@ -1,4 +1,4 @@
-import { GPT_SEMANTIC_SEARCH_PROMPT } from "@/constant/prompt";
+import { GPT_SEMANTIC_FILTER_PROMPT, GPT_SEMANTIC_SEARCH_PROMPT } from "@/constant/prompt";
 import OpenAI from "openai";
 
 class GPT {
@@ -13,13 +13,31 @@ class GPT {
         })
     }
 
-    public async getResponse(text: string): Promise<string | null> {
+    public async getSearchResponse(text: string): Promise<string | null> {
         const GPTResponse = await this.openai.chat.completions.create({
             model: "gpt-4o",
             messages: [
                 {
                     role: "system",
                     content: GPT_SEMANTIC_SEARCH_PROMPT
+                },
+                {
+                    role: "user",
+                    content: text
+                }
+            ]
+        })
+
+        return GPTResponse.choices[0].message.content;
+    }
+
+    public async getKeywordResponse(text: string): Promise<string | null> {
+        const GPTResponse = await this.openai.chat.completions.create({
+            model: "gpt-4o",
+            messages: [
+                {
+                    role: "system",
+                    content: GPT_SEMANTIC_FILTER_PROMPT
                 },
                 {
                     role: "user",
