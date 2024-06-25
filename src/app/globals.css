@@ -2,9 +2,48 @@
 @tailwind components;
 @tailwind utilities;
 
-body {
-  width: 100%;
-  height: 100%;
-  padding: 0;
-  margin: 0;
+html {
+  user-select: none;
+}
+
+@font-face {
+  font-family: "PretendardBold";
+  src: url("../../public/Pretendard-Bold.otf");
+}
+
+@font-face {
+  font-family: "PretendardMedium";
+  src: url("../../public/Pretendard-Medium.otf");
+}
+
+@font-face {
+  font-family: "PretendardRegular";
+  src: url("../../public/Pretendard-Regular.otf");
+}
+
+@font-face {
+  font-family: "PretendardSemiBold";
+  src: url("../../public/Pretendard-Bold.otf");
+}
+
+@font-face {
+  font-family: "IBMPlexSansKRBold";
+  src: url("../../public/IBMPlexSansKR-Bold.otf");
+}
+
+@font-face {
+  font-family: "IBMPlexSansKRSemiBold";
+  src: url("../../public/IBMPlexSansKR-SemiBold.otf");
+}
+
+@font-face {
+  font-family: "IBMPlexSansKRMedium";
+  src: url("../../public/IBMPlexSansKR-Medium.otf");
+}
+
+@font-face {
+  font-family: 'TTHakgyoansimUndongjangL';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2402_keris@1.0/TTHakgyoansimUndongjangL.woff2') format('woff2');
+  font-weight: 300;
+  font-style: normal;
 }
