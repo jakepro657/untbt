@@ -11,7 +11,7 @@ export default function Home() {
   const [result, setResult] = useState('')
 
   const onClickSearchButton = async () => {
-    const response = await fetch('/api/v1/ai', {
+    const response = await fetch('/api/v1/analysis', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
