@@ -1,5 +1,3 @@
-
-/** 키워드를 분석해서 HS code에 따라 매핑 시키는 */
 export const GPT_SEMANTIC_SEARCH_PROMPT = `
     <Context>
         You have to analyze the following keywords,
@@ -33,6 +31,76 @@ export const GPT_SEMANTIC_SEARCH_PROMPT = `
         22. Beverages, Spirits and Vinegar
         23. Residues and Waste From The Food İndustries; Prepared Animal Feed
         24. Tobacco and Manufactured Tobacco Substitutes
+        25. Salt; Sulfur; Earths and Stone; Plastering Materials, Lime and Cement
+        26. Ores, Slag and Ash
+        27. Mineral Fuels, Mineral Oils and Products Of Their Distillation; Bituminous Substances; Mineral Waxes
+        28. Inorganic Chemicals; Organic or İnorganic Compounds Of Precious Metals, Of Rare-Earth Metals,Of Radioactive Elements or Of İsotopes
+        29. Organic Chemicals
+        30. Pharmaceutical Products
+        31. Fertilizers
+        32. Tanning or Dyeing Extracts; Dyes, Pigments, Paints, Varnishes, Putty and Mastics
+        33. Essential Oils and Resinoids; Perfumery, Cosmetic or Toilet Preparations
+        34. Soap, Organic Surface-Active Agents, Washing Preparations, Lubricating Preparations, Artificial Waxes, Prepared Waxes, Polishing or Scouring Preparations, Candles and Similar Articles, Modeling Pastes, Dental Waxes and Dental Preparations With A Basis Of Plaster
+        35. Albuminoidal Substances; Modified Starches; Glues; Enzymes
+        36. Explosives; Pyrotechnic Products; Matches; Pyrophoric Alloys; Certain Combustible Preparations
+        37. Photographic or Cinematographic Goods
+        38. Miscellaneous Chemical Products
+        39. Plastics and Articles Thereof
+        40. Rubber and Articles Thereof
+        41. Raw Hides and Skins (Other Than Furskins) and Leather
+        42. Articles Of Leather; Saddlery and Harness; Travel Goods, Handbags and Similar Containers; Articles Of Animal Gut (Other Than Silkworm Gut)
+        43. Furskins and Artificial Fur; Manufactures Thereof
+        44. Wood and Articles Of Wood; Wood Charcoal
+        45. Cork and Articles Of Cork
+        46. Manufactures Of Straw, Of Esparto or Of Other Plaiting Materials; Basketware and Wickerwork
+        47. Pulp Of Wood or Of Other Fibrous Cellulosic Material; Waste and Scrap Of Paper or Paperboard
+        48. Paper and Paperboard; Articles Of Paper Pulp, Of Paper or Of Paperboard
+        49. Printed Books, Newspapers, Pictures and Other Products Of The Printing İndustry; Manuscripts, Typescripts and Plans
+        50. Silk
+        51. Wool, Fine or Coarse Animal Hair; Horsehair Yarn and Woven Fabric
+        52. Cotton
+        53. Other Vegetable Textile Fibers; Paper Yarn and Woven Fabric Of Paper Yarn
+        54. Man-Made Filaments
+        55. Man-Made Staple Fibers
+        56. Wadding, Felt and Nonwovens; Special Yarns, Twine, Cordage, Ropes and Cables and Articles Thereof
+        57. Carpets and Other Textile Floor Coverings
+        58. Special Woven Fabrics; Tufted Textile Fabrics; Lace, Tapestries; Trimmings; Embroidery
+        59. Impregnated, Coated, Covered or Laminated Textile Fabrics; Textile Articles Of A Kind Suitable For İndustrial Use
+        60. Knitted or Crocheted Fabrics
+        61. Articles Of Apparel and Clothing Accessories, Knitted or Crocheted
+        62. Articles Of Apparel and Clothing Accessories, Not Knitted or Crocheted
+        63. Other Made Up Textile Articles; Sets; Worn Clothing and Worn Textile Articles; Rags
+        64. Footwear, Gaiters and The Like; Parts Of Such Articles
+        65. Headgear and Parts Thereof
+        66. Umbrellas, Sun Umbrellas, Walking Sticks, Seatsticks, Whips, Riding-Crops and Parts Thereof
+        67. Prepared Feathers and Down and Articles Made Of Feathers or Of Down; Artificial Flowers; Articles Of Human Hair
+        68. Articles Of Stone, Plaster, Cement, Asbestos, Mica or Similar Materials
+        69. Ceramic Products
+        70. Glass and Glassware
+        71. Natural or Cultured Pearls, Precious or Semi-Precious Stones,Precious Metals, Metals Clad With Precious Metal and Articles Thereof; İmitation Jewelry; Coin
+        72. Iron and Steel
+        73. Articles Of İron or Steel
+        74. Copper and Articles Thereof
+        75. Nickel and Articles Thereof
+        76. Aluminum and Articles Thereof
+        78. Lead and Articles Thereof
+        79. Zinc and Articles Thereof
+        80. Tin and Articles Thereof
+        81. Other Base Metals; Cermets; Articles Thereof
+        82. Tools, İmplements, Cutlery, Spoons and Forks, Of Base Metal; Parts Thereof Of Base Metal
+        83. Miscellaneous Articles Of Base Meta49. 
+        49/.Vehicles Other Than Railway or Tramway Rolling Stock, and Parts and Accessories Thereof
+        50. Vehicles Other Than Railway or Tramway Rolling Stock, and Parts and Accessories Thereof
+        51. Vehicles Other Than Railway or Tramway Rolling Stock, and Parts and Accessories Thereof
+        52. Vehicles Other Than Railway or Tramway Rolling Stock, and Parts and Accessories Thereof
+        Vehicles Other Than Railway or Tramway Rolling Stock, and Parts and Accessories Thereof53. Vehicles Other Than Railway or Tramway Rolling Stock, and Parts and Accessories Thereof
+        54. Vehicles Other Than Railway or Tramway Rolling Stock, and Parts and Accessories Thereof
+        55. . 
+        84. Nuclear Reactors, Boilers, Machinery and Mechanical Appliances; Parts Thereof
+        85. Electrical Machinery and Equipment and Parts Thereof; Sound Recorders and Reproducers, Television İmage and Sound Recorders and Reproducers, and Parts and Accessories Of Such Articles
+        86. Railway or Tramway Locomotives, Rolling-Stock and Parts Thereof; Railway or Tramway Track Fixtures and Fittings and Parts Thereof; Mechanical (İncluding Electro-Mechanical) Traffic Signalling Equipment Of All Kinds
+        87. Vehicles Other Than Railway or Tramway Rolling Stock, and Parts and Accessories Thereof
+        88. 
     </Instructions>
 `
 
@@ -71,7 +139,6 @@ export const GPT_SEMANTIC_FILTER_PROMPT = `
         
     </Instructions>
 `
-
 /** */
 export const GPT_REPORT_PROMPT = `
     <Context>
