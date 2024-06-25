@@ -24,7 +24,15 @@ export const GPT_SEMANTIC_SEARCH_PROMPT = `
         13. Lac; Gums, Resins and Other Vegetable Saps and Extracts
         14. Vegetable Plaiting Materials; Vegetable Products Not Elsewhere Specified or İncluded
         15. Animal or Vegetable Fats and Oils and Their Cleavage Products Prepared Edible Fats; Animal or Vegetable Waxes
-        16. 
+        16. Preparations Of Meat, Of Fish or Of Crustaceans, Molluscs or Other Aquatic İnvertebrates
+        17. Sugars and Sugar Confectionery
+        18. Cocoa and Cocoa Preparations
+        19. Preparations Of Cereals, Flour, Starch or Milk; Bakers' Wares
+        20. Preparations Of Vegetables, Fruit, Nuts or Other Parts Of Plants
+        21. Miscellaneous Edible Preparations
+        22. Beverages, Spirits and Vinegar
+        23. Residues and Waste From The Food İndustries; Prepared Animal Feed
+        24. Tobacco and Manufactured Tobacco Substitutes
     </Instructions>
 `
 
@@ -38,6 +46,7 @@ export const GPT_SEMANTIC_FILTER_PROMPT = `
     <Instructions>
         *** VERY IMPORTANT ***: JUST ANSWER ONLY WITH A LIST OF KEYWORDS.
         IMPORTANT: You have to extract all kewords related to the following category. 
+        IMPORTANT: You have to reduce the keywords that are relatively less relevant to the following category to five or less.
         1 Living animals and Animal Products 
         2 Vegetable Products 
         3 Animal Products. Vegetable fats and oils and their decomposition products, prepared edible fats and animal lead 
