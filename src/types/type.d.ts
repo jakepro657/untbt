@@ -1,3 +1,7 @@
 interface TbtApiParams {
 
 }
+
+interface TbtApiResponse {
+
+}

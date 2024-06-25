@@ -71,3 +71,25 @@ export const GPT_SEMANTIC_FILTER_PROMPT = `
         
     </Instructions>
 `
+
+/** */
+export const GPT_REPORT_PROMPT = `
+    <Context>
+        You have to see the following two texts.
+        First is the text about user's product document for trade.
+        Second is the text about the trade barrier document.
+    </Context>
+
+    <Instructions>
+        *** VERY IMPORTANT ***: WRITE A REPORT THAT INFERENCES IF USER CAN TRADE THE PRODUCT OR NOT.
+        You have to make a report about the following two texts.
+        If it is possible to trade the product, you have to write "YES".
+        If it is not possible to trade the product, you have to write "NO".
+        
+        *** IMPORTANT ***: The criteria for the product to be traded are as follows:
+            The product is not related to the trade barrier document.
+            If the product is related to the trade barrier document, the product is prohibited from trading.
+
+        If it is not clear whether the product can be traded, you have to write "UNCLEAR".
+    </Instructions>
+`
