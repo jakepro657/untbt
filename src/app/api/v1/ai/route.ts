@@ -5,7 +5,7 @@ export async function POST(req: Request) {
 
     const { text } = await req.json();
 
-    const response = await GPT_INSTANCE.getResponse(text);
+    const response = await GPT_INSTANCE.getKeywordResponse(text);
 
     return NextResponse.json({
         message: response
