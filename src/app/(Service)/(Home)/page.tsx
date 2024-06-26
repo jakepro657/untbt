@@ -158,6 +158,6 @@ export default function Home() {
     <div className="absolute w-full top-[50%] left-1/2 -translate-x-1/2 text-center">
       {result}
     </div>
-    <textarea readOnly value={report} className="absolute w-full h-96 top-[60%] left-1/2 -translate-x-1/2 text-center" />
+    <textarea readOnly value={report} className="absolute w-[512px] h-1/3 top-[60%] left-1/2 -translate-x-1/2 text-center" />
   </div>
 }
