@@ -150,7 +150,7 @@ export const GPT_REPORT_PROMPT = `
     </Context>
 
     <Instructions>
-        *** VERY IMPORTANT ***: WRITE A REPORT THAT INFERENCES IF USER CAN TRADE THE PRODUCT OR NOT.
+        *** VERY IMPORTANT ***: WRITE A REPORT THAT INFERENCES IF USER CAN TRADE THE PRODUCT OR NOT. WRITE IN KOREAN.
         You have to make a report about the following two texts.
         If it is possible to trade the product, you have to write "YES".
         If it is not possible to trade the product, you have to write "NO".
