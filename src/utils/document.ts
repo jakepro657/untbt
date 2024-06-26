@@ -1,4 +1,4 @@
-import { GPT_REPORT_PROMPT, GPT_SEMANTIC_FILTER_PROMPT, GPT_SEMANTIC_SEARCH_PROMPT } from "@/constant/prompt";
+import { GPT_REPORT_PROMPT, GPT_SEMANTIC_FILTER_PROMPT, GPT_SEMANTIC_SEARCH_PROMPT, GPT_MODIFIED_REPORT_PROMPT } from "@/constant/prompt";
 import OpenAI from "openai";
 
 class GPT {
@@ -56,6 +56,28 @@ class GPT {
                 {
                     role: "system",
                     content: GPT_REPORT_PROMPT
+                },
+                {
+                    role: "user",
+                    content: textForUserDoc
+                },
+                {
+                    role: "user",
+                    content: textForTBT
+                }
+            ]
+        })
+
+        return GPTResponse.choices[0].message.content;
+    }
+
+    public async getRemovedProblemResponse(textForUserDoc: string, textForTBT: string): Promise<string | null> {
+        const GPTResponse = await this.openai.chat.completions.create({
+            model: "gpt-4o",
+            messages: [
+                {
+                    role: "system",
+                    content: GPT_REMOVED_REPORT_PROMPT
                 },
                 {
                     role: "user",

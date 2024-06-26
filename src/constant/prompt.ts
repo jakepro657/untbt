@@ -162,3 +162,13 @@ export const GPT_REPORT_PROMPT = `
         If it is not clear whether the product can be traded, you have to write "UNCLEAR".
     </Instructions>
 `
+
+export const GPT_REMOVED_REPORT_PROMPT = `
+    <Context>
+        *** IMPORTANT *** : YOU MUST DELETE ONLY THE PARTS OF THE textForUserDoc THAT CONFILCT WITH textForTBT AND KEEP THE ORIGINAL FORM OF THE textForUserDoc
+    </Context>
+
+    <Instructions>
+        *** IMPORTANT *** : Find only the factors that fail the transaction and remove them from the textForUserDoc.
+    <Instructions>
+`

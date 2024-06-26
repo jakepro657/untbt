@@ -9,6 +9,7 @@ export async function POST(req: Request) {
     const { text } = await req.json();
 
     const tbtDocs = await QUERY_INSTANCE.operate({});
+    //const response = await GPT_INSTANCE.getRemovedProblemResponse(text, tbtDocs);
     const response = await GPT_INSTANCE.getReportResponse(text, tbtDocs);
 
     return NextResponse.json({
