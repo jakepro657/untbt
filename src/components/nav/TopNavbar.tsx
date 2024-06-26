@@ -2,9 +2,8 @@ import { Disclosure, DisclosureButton, DisclosurePanel, Menu, MenuButton, MenuIt
 import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline'
 
 const navigation = [
-    { name: '메인화면', href: '#', current: true },
-    { name: 'TBT 검색 결과', href: '#', current: false },
-    { name: '문서 관리', href: '#', current: false },
+    { name: 'TBT 통관 분석', href: '#', current: true },
+    { name: '마이페이지', href: '#', current: false },
 ]
 
 function classNames(...classes: any[]) {
@@ -13,7 +12,7 @@ function classNames(...classes: any[]) {
 
 export default function TopNavbar() {
     return (
-        <Disclosure as="nav" className="bg-indigo-800 font-PretendardRegular">
+        <Disclosure as="nav" className="w-full bg-indigo-800 font-PretendardRegular">
             {({ open }) => (
                 <>
                     <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">

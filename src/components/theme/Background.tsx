@@ -6,11 +6,11 @@ type Props = {}
 
 function Background({ }: Props) {
     return (
-        <div className='absolute bottom-0 left-0 w-full h-1/2'>
+        <div className='absolute bottom-0 left-0 w-full'>
             <Image
                 alt='background'
                 src={img}
-                layout='fill'
+                className='object-cover h-1/2 w-full'
                 objectFit='cover'
                 objectPosition='bottom'
             />

@@ -1,6 +1,6 @@
 "use client";
 
-import TopNavbar from "@/components/nav/TopNavbar";
+import CircleLoading from "@/components/CircleLoading";
 import SearchInput from "@/components/SearchInput";
 import { useState } from "react";
 
@@ -110,8 +110,10 @@ const MOCK = `
 export default function Home() {
 
   const [searchText, setSearchText] = useState('')
-  const [result, setResult] = useState('')
+  // const [result, setResult] = useState('')
   const [report, setReport] = useState('')
+
+  const [loading, setLoading] = useState(false)
 
   const onClickSearchButton = async () => {
     // const response = await fetch('/api/v1/analysis', {
@@ -127,6 +129,7 @@ export default function Home() {
     // const data = await response.json()
 
     // setResult(data.message)
+    setLoading(true)
 
     const res = await fetch('/api/v1/docs', {
       method: 'POST',
@@ -134,30 +137,48 @@ export default function Home() {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        text: MOCK
+        text: searchText
       }),
     })
 
+    
     const docs = await res.json()
-
+    
     setReport(docs.message)
+    setLoading(false)
   }
 
-  const onChangeSearchText = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const onChangeSearchText = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setSearchText(e.target.value)
   }
 
-  return <div className="relative w-full h-full top-0 left-0">
-    <TopNavbar />
-    <div className="absolute font-IBMPlexSansKRSemiBold text-4xl text-slate-700 -translate-x-1/2 left-1/2 top-1/4">
-      UNTBT입니다, 무엇을 도와드릴까요?
+  return <div className="relative z-20 w-full h-full flex">
+    <div className="my-auto w-1/4 h-full flex flex-col p-6">
+      <div className="text-2xl h-16 flex justify-center items-center font-IBMPlexSansKRSemiBold text-center text-slate-700">
+        <p>문서 관리</p>
+      </div>
+      <textarea readOnly className="w-full h-full text-center resize-none drop-shadow-lg" />
     </div>
-    <div className="absolute w-full top-[38%] left-1/2 -translate-x-1/2">
+    <div className="flex flex-col h-full ml-auto">
+      <div className="my-auto mx-auto font-IBMPlexSansKRSemiBold text-4xl text-slate-700 text-center">
+        UNTBT입니다, 무엇을 도와드릴까요?
+      </div>
       <SearchInput onChangeSearchText={onChangeSearchText} onClickSearchButton={onClickSearchButton} />
+      <button onClick={onClickSearchButton} className='my-auto mx-auto w-full font-PretendardMedium hover:bg-blue-700 bg-blue-600 text-white rounded-full p-3'>
+          검색
+      </button>
+      {/* <div className="absolute w-full top-[50%] left-1/2 -translate-x-1/2 text-center">
+        {result}
+        </div> */}
     </div>
-    <div className="absolute w-full top-[50%] left-1/2 -translate-x-1/2 text-center">
-      {result}
+    <div className="relative my-auto ml-auto w-1/4 h-full flex flex-col p-6">
+      <div className="z-20 absolute left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2">
+          {loading && <CircleLoading />}
+      </div>
+      <div className="text-2xl h-16 flex justify-center items-center font-IBMPlexSansKRSemiBold text-center text-slate-700">
+        <p>분석 결과</p>
+      </div>
+      <textarea readOnly value={report} className="w-full h-full text-center resize-none drop-shadow-lg" />
     </div>
-    <textarea readOnly value={report} className="absolute w-[512px] h-1/3 top-[60%] left-1/2 -translate-x-1/2 text-center" />
   </div>
 }
