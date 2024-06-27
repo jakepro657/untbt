@@ -141,6 +141,8 @@ export default function Home() {
     const [loading, setLoading] = useState(false);
 
     const onClickSearchButton = async () => {
+        if (loading) return;
+
         setOriginalDoc(searchText);
 
         setLoading(true);
