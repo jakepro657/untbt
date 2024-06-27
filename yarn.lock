@@ -4451,7 +4451,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"prettier@npm:^3.3.2":
+"prettier@npm:3.3.2":
   version: 3.3.2
   resolution: "prettier@npm:3.3.2"
   bin:
@@ -5462,7 +5462,7 @@ __metadata:
     next: "npm:14.2.4"
     openai: "npm:^4.52.0"
     postcss: "npm:^8"
-    prettier: "npm:^3.3.2"
+    prettier: "npm:3.3.2"
     react: "npm:^18"
     react-dom: "npm:^18"
     tailwindcss: "npm:^3.4.4"

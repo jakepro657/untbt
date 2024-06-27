@@ -1,8 +1,8 @@
-"use client";
+'use client';
 
-import CircleLoading from "@/components/CircleLoading";
-import SearchInput from "@/components/SearchInput";
-import { useState } from "react";
+import CircleLoading from '@/components/CircleLoading';
+import SearchInput from '@/components/SearchInput';
+import { useState } from 'react';
 
 const MOCK = `
   ### 담배 증류 기술에 관한 문서
@@ -105,80 +105,76 @@ const MOCK = `
   담배 증류 기술은 담배 산업 및 의약품 개발에서 중요한 역할을 합니다. 이 기술은 고품질의 니코틴을 생산하고, 다양한 응용 분야에 활용될 수 있는 기반을 제공합니다. 최신 연구 동향을 반영하여, 더욱 친환경적이고 효율적인 방법을 개발함으로써 담배 증류 기술의 발전을 도모할 수 있습니다. 
 
   이 문서가 담배 증류 기술의 이해에 도움이 되기를 바랍니다. 추가적인 연구와 개발을 통해 이 분야의 기술이 지속적으로 발전하길 기대합니다.
-`
+`;
 
 export default function Home() {
+    const [searchText, setSearchText] = useState('');
+    // const [result, setResult] = useState('')
+    const [report, setReport] = useState('');
 
-  const [searchText, setSearchText] = useState('')
-  // const [result, setResult] = useState('')
-  const [report, setReport] = useState('')
+    const [loading, setLoading] = useState(false);
 
-  const [loading, setLoading] = useState(false)
+    const onClickSearchButton = async () => {
+        // const response = await fetch('/api/v1/analysis', {
+        //   method: 'POST',
+        //   headers: {
+        //     'Content-Type': 'application/json',
+        //   },
+        //   body: JSON.stringify({
+        //     text: searchText
+        //   }),
+        // })
 
-  const onClickSearchButton = async () => {
-    // const response = await fetch('/api/v1/analysis', {
-    //   method: 'POST',
-    //   headers: {
-    //     'Content-Type': 'application/json',
-    //   },
-    //   body: JSON.stringify({
-    //     text: searchText
-    //   }),
-    // })
+        // const data = await response.json()
 
-    // const data = await response.json()
+        // setResult(data.message)
+        setLoading(true);
 
-    // setResult(data.message)
-    setLoading(true)
+        const res = await fetch('/api/v1/docs', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                text: searchText,
+            }),
+        });
 
-    const res = await fetch('/api/v1/docs', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        text: searchText
-      }),
-    })
+        const docs = await res.json();
 
-    
-    const docs = await res.json()
-    
-    setReport(docs.message)
-    setLoading(false)
-  }
+        setReport(docs.message);
+        setLoading(false);
+    };
 
-  const onChangeSearchText = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-    setSearchText(e.target.value)
-  }
+    const onChangeSearchText = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+        setSearchText(e.target.value);
+    };
 
-  return <div className="relative z-20 w-full h-full flex">
-    <div className="my-auto w-1/4 h-full flex flex-col p-6">
-      <div className="text-2xl h-16 flex justify-center items-center font-IBMPlexSansKRSemiBold text-center text-slate-700">
-        <p>문서 관리</p>
-      </div>
-      <textarea readOnly className="w-full h-full text-center resize-none drop-shadow-lg" />
-    </div>
-    <div className="flex flex-col h-full ml-auto">
-      <div className="my-auto mx-auto font-IBMPlexSansKRSemiBold text-4xl text-slate-700 text-center">
-        UNTBT입니다, 무엇을 도와드릴까요?
-      </div>
-      <SearchInput onChangeSearchText={onChangeSearchText} onClickSearchButton={onClickSearchButton} />
-      <button onClick={onClickSearchButton} className='my-auto mx-auto w-full font-PretendardMedium hover:bg-blue-700 bg-blue-600 text-white rounded-full p-3'>
-          검색
-      </button>
-      {/* <div className="absolute w-full top-[50%] left-1/2 -translate-x-1/2 text-center">
+    return (
+        <div className="relative z-20 w-full h-full flex">
+            <div className="my-auto w-1/4 h-full flex flex-col p-6">
+                <div className="text-2xl h-16 flex justify-center items-center font-IBMPlexSansKRSemiBold text-center text-slate-700">
+                    <p>문서 관리</p>
+                </div>
+                <textarea readOnly className="w-full h-full text-center resize-none drop-shadow-lg" />
+            </div>
+            <div className="flex flex-col h-full ml-auto">
+                <div className="my-auto mx-auto font-IBMPlexSansKRSemiBold text-4xl text-slate-700 text-center">UNTBT입니다, 무엇을 도와드릴까요?</div>
+                <SearchInput onChangeSearchText={onChangeSearchText} onClickSearchButton={onClickSearchButton} />
+                <button onClick={onClickSearchButton} className="my-auto mx-auto w-full font-PretendardMedium hover:bg-blue-700 bg-blue-600 text-white rounded-full p-3">
+                    검색
+                </button>
+                {/* <div className="absolute w-full top-[50%] left-1/2 -translate-x-1/2 text-center">
         {result}
         </div> */}
-    </div>
-    <div className="relative my-auto ml-auto w-1/4 h-full flex flex-col p-6">
-      <div className="z-20 absolute left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2">
-          {loading && <CircleLoading />}
-      </div>
-      <div className="text-2xl h-16 flex justify-center items-center font-IBMPlexSansKRSemiBold text-center text-slate-700">
-        <p>분석 결과</p>
-      </div>
-      <textarea readOnly value={report} className="w-full h-full text-center resize-none drop-shadow-lg" />
-    </div>
-  </div>
+            </div>
+            <div className="relative my-auto ml-auto w-1/4 h-full flex flex-col p-6">
+                <div className="z-20 absolute left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2">{loading && <CircleLoading />}</div>
+                <div className="text-2xl h-16 flex justify-center items-center font-IBMPlexSansKRSemiBold text-center text-slate-700">
+                    <p>분석 결과</p>
+                </div>
+                <textarea readOnly value={report} className="w-full h-full text-center resize-none drop-shadow-lg" />
+            </div>
+        </div>
+    );
 }
