@@ -4,6 +4,23 @@ import CircleLoading from '@/components/CircleLoading';
 import SearchInput from '@/components/SearchInput';
 import { useState } from 'react';
 
+function findMissingParts(original: string, comparison: string) {
+    let originalIndex = 0;
+    let comparisonIndex = 0;
+    let missingParts = '';
+
+    while (originalIndex < original.length) {
+        // 비교할 문자열이 끝났거나, 현재 문자가 일치하지 않으면
+        if (comparisonIndex >= comparison.length || original[originalIndex] !== comparison[comparisonIndex]) {
+            missingParts += original[originalIndex]; // 누락된 부분을 저장
+        } else {
+            comparisonIndex++; // 일치하면 비교 문자열의 인덱스를 증가
+        }
+        originalIndex++; // 원래 문자열의 인덱스를 증가
+    }
+
+    return missingParts;
+}
 const MOCK = `
   ### 담배 증류 기술에 관한 문서
 
@@ -111,23 +128,11 @@ export default function Home() {
     const [searchText, setSearchText] = useState('');
     // const [result, setResult] = useState('')
     const [report, setReport] = useState('');
+    const [removedDoc, setRemovedDoc] = useState('');
 
     const [loading, setLoading] = useState(false);
 
     const onClickSearchButton = async () => {
-        // const response = await fetch('/api/v1/analysis', {
-        //   method: 'POST',
-        //   headers: {
-        //     'Content-Type': 'application/json',
-        //   },
-        //   body: JSON.stringify({
-        //     text: searchText
-        //   }),
-        // })
-
-        // const data = await response.json()
-
-        // setResult(data.message)
         setLoading(true);
 
         const res = await fetch('/api/v1/docs', {
@@ -143,11 +148,67 @@ export default function Home() {
         const docs = await res.json();
 
         setReport(docs.message);
+
+        const resForEmph = await fetch('/api/v1/remove', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                text: searchText,
+                // tbtDocs: report,
+            }),
+        });
+
+        const docsForEmph = await resForEmph.json();
+
+        setRemovedDoc(docsForEmph.message);
+
         setLoading(false);
     };
 
     const onChangeSearchText = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
         setSearchText(e.target.value);
+    };
+
+    const emphasizeDoc = (originalDoc: string, toCompareDoc: string) => {
+        console.log('originalDoc', originalDoc);
+        console.log('toCompareDoc', toCompareDoc);
+
+        const emphasizedDoc = findMissingParts(originalDoc, toCompareDoc);
+
+        console.log('emphasizedDoc', emphasizedDoc);
+
+        return (
+            <div className="w-full h-full text-center drop-shadow-lg">
+                <div className="text-2xl h-16 flex justify-center items-center font-IBMPlexSansKRSemiBold text-center text-slate-700">
+                    <p>누락된 부분 강조</p>
+                </div>
+                {originalDoc
+                    .trim()
+                    .split('\n')
+                    .map((line, index) => {
+                        const l = line.trim();
+                        const emphasizedLines = emphasizedDoc
+                            .trim()
+                            .split('\n')
+                            .map(emph => emph.trim());
+
+                        if (emphasizedLines.includes(l)) {
+                            return (
+                                <p key={index} className="">
+                                    {l}
+                                </p>
+                            );
+                        }
+                        return (
+                            <p key={index} className="text-red-500">
+                                {l}
+                            </p>
+                        );
+                    })}
+            </div>
+        );
     };
 
     return (
@@ -156,7 +217,8 @@ export default function Home() {
                 <div className="text-2xl h-16 flex justify-center items-center font-IBMPlexSansKRSemiBold text-center text-slate-700">
                     <p>문서 관리</p>
                 </div>
-                <textarea readOnly className="w-full h-full text-center resize-none drop-shadow-lg" />
+                {searchText && removedDoc && emphasizeDoc(searchText, removedDoc)}
+                {/* <textarea readOnly className="w-full h-full text-center resize-none drop-shadow-lg" /> */}
             </div>
             <div className="flex flex-col h-full ml-auto">
                 <div className="my-auto mx-auto font-IBMPlexSansKRSemiBold text-4xl text-slate-700 text-center">UNTBT입니다, 무엇을 도와드릴까요?</div>
@@ -164,9 +226,6 @@ export default function Home() {
                 <button onClick={onClickSearchButton} className="my-auto mx-auto w-full font-PretendardMedium hover:bg-blue-700 bg-blue-600 text-white rounded-full p-3">
                     검색
                 </button>
-                {/* <div className="absolute w-full top-[50%] left-1/2 -translate-x-1/2 text-center">
-        {result}
-        </div> */}
             </div>
             <div className="relative my-auto ml-auto w-1/4 h-full flex flex-col p-6">
                 <div className="z-20 absolute left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2">{loading && <CircleLoading />}</div>

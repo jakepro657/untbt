@@ -104,7 +104,7 @@ export const GPT_SEMANTIC_SEARCH_PROMPT = `
         96. Miscellaneous Manufactured Articles
         97. Works Of Art, Collectors' Pieces and Antiques
     </Instructions>
-`
+`;
 
 /** 세관 문서input에 대해 주요 키워드들을 뽑아내는 prompt */
 export const GPT_SEMANTIC_FILTER_PROMPT = `
@@ -140,7 +140,7 @@ export const GPT_SEMANTIC_FILTER_PROMPT = `
         21 Furniture, Bedding, Mattresses, Cushions, Lamps and Lighting Fittings, İlluminated Signs, Prefabricated Buildings & Miscellaneous Products
         
     </Instructions>
-`
+`;
 /** */
 export const GPT_REPORT_PROMPT = `
     <Context>
@@ -161,14 +161,18 @@ export const GPT_REPORT_PROMPT = `
 
         If it is not clear whether the product can be traded, you have to write "UNCLEAR".
     </Instructions>
-`
+`;
 
 export const GPT_REMOVED_REPORT_PROMPT = `
     <Context>
-        *** IMPORTANT *** : YOU MUST DELETE ONLY THE PARTS OF THE textForUserDoc THAT CONFILCT WITH textForTBT AND KEEP THE ORIGINAL FORM OF THE textForUserDoc
+        You have to see the following two texts.
+        First is the document text about user's product document for trade.
+        Second is the report text about the trade barrier document.
     </Context>
 
     <Instructions>
-        *** IMPORTANT *** : Find only the factors that fail the transaction and remove them from the textForUserDoc.
+        Extract only the items in violation of the TBT document's regulations.
+        *** IMPORTANT ***: KEEP THE FORMAT OF THE TEXT AS IT IS.
+        *** VERY IMPORTANT ***: MUST EXTRACT ONE PARAGRAPH.
     <Instructions>
-`
+`;
