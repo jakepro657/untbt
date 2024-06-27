@@ -57,10 +57,7 @@ export const GPT_SEMANTIC_SEARCH_PROMPT = `
         48. Paper and Paperboard; Articles Of Paper Pulp, Of Paper or Of Paperboard
         49. Printed Books, Newspapers, Pictures and Other Products Of The Printing İndustry; Manuscripts, Typescripts and Plans
         50. Silk
-        51. Wool, Fine or Coarse Animal Hair; Horsehair Yarn and Woven Fabric
-        52. Cotton
-        53. Other Vegetable Textile Fibers; Paper Yarn and Woven Fabric Of Paper Yarn
-        54. Man-Made Filaments
+        51. Wool, Fine or Coarse Animal Hair; Horsehafirst r
         55. Man-Made Staple Fibers
         56. Wadding, Felt and Nonwovens; Special Yarns, Twine, Cordage, Ropes and Cables and Articles Thereof
         57. Carpets and Other Textile Floor Coverings
@@ -135,21 +132,7 @@ export const GPT_SEMANTIC_FILTER_PROMPT = `
         16 Machinery, Electronics, Electrical Equipment
         17 Vehicles, Aircraft, Vessels & Other Transport Equipment
         18 Antiques, Art Works, Collectors' Pieces
-        19 Medical Instruments, Optical, Phot### 서론
-
-        식품 연구는 인류의 건강과 안전, 그리고 삶의 질을 향상시키기 위해 필수적인 분야입니다. 이 연구는 식품의 영양성분, 안전성, 저장성, 그리고 새로운 식품 개발 등을 포함합니다.
-        
-        ### 연구 내용
-        
-        식품 연구는 주로 영양학, 미생물학, 화학, 공학 등의 학문을 바탕으로 진행됩니다. 영양학 연구에서는 식품의 영양성분 분석과 이를 통한 건강 증진 방법을 모색합니다. 미생물학 연구는 식품 안전성을 위해 유해 미생물의 검출 및 제어 방법을 개발합니다. 화학적 연구는 식품 첨가물, 보존제, 그리고 식품의 화학적 변화 등을 다룹니다. 공학적 접근은 식품의 가공, 포장, 저장 기술을 개선하여 신선도와 맛을 유지하는 방법을 찾습니다.
-        
-        ### 응용 및 발전
-        
-        최근에는 식품의 기능성을 강화하기 위한 연구가 활발히 진행되고 있습니다. 이는 특정 건강 문제를 해결하거나 예방할 수 있는 기능성 식품 개발로 이어집니다. 예를 들어, 프로바이오틱스나 항산화제 함유 식품은 면역력 증진과 노화 방지에 기여할 수 있습니다.
-        
-        ### 결론
-        
-        식품 연구는 인류의 건강과 복지에 큰 영향을 미치며, 지속적인 연구와 혁신을 통해 더욱 안전하고 영양가 높은 식품을 제공할 수 있습니다. 이러한 연구는 미래 식량 문제 해결에도 중요한 역할을 할 것입니다graphic, Cinematographic, Measuring, Checking, Precision Instruments, Clocks&Watches, Musical instruments
+        19 Medical Instruments, Optical, Photographic, Cinematographic, Measuring, Checking, Precision Instruments, Clocks&Watches, Musical instruments
         20 Arms And Ammunition
         21 Furniture, Bedding, Mattresses, Cushions, Lamps and Lighting Fittings, İlluminated Signs, Prefabricated Buildings & Miscellaneous Products
         
@@ -186,7 +169,7 @@ export const GPT_REMOVED_REPORT_PROMPT = `
     </Context>
 
     <Instructions>
-        *** VERY IMPORTANT *** : YOU MUST REMOVE ONLY THE PART WHERE THE USER DOCUMENT TEXT DIRECTLY CONFLICTS WITH THE TRADE BARRIER DOCUMENT.
+        *** IMPORTANT *** : YOU MUST REMOVE ONLY THE PART WHERE THE USER DOCUMENT TEXT DIRECTLY CONFLICTS WITH THE TRADE BARRIER DOCUMENT.
         *** IMPORTANT ***: KEEP THE FORMAT OF THE TEXT AS MUCH AS POSSIBLE.
         IMPORTANT : DO NOT ERASE THE NUMBER OR SUBTITLE OF PARAGRAPHS TO BE REMOVED
     <Instructions>
