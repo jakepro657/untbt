@@ -65,6 +65,7 @@ class GPT {
                     content: textForTBT,
                 },
             ],
+            temperature: 0
         });
 
         return GPTResponse.choices[0].message.content;
@@ -80,13 +81,10 @@ class GPT {
                 },
                 {
                     role: 'user',
-                    content: `FIRST: ${textForUserDoc}`,
-                },
-                {
-                    role: 'user',
-                    content: `SECOND: ${textForTBT}`,
+                    content: `FIRST DOCUMENT: ${textForUserDoc} / SECOND DOCUMENT: ${textForTBT}`,
                 },
             ],
+            temperature: 1.3
         });
 
         return GPTResponse.choices[0].message.content;

@@ -4,9 +4,11 @@ import { NextResponse } from 'next/server';
 
 // DB 문서 불러오는 쿼리 API
 export async function POST(req: Request) {
-    const { text } = await req.json();
+    const { text, tbtDocs } = await req.json();
+    // const tbtDocs = await QUERY_INSTANCE.operate({});
 
-    const tbtDocs = await QUERY_INSTANCE.operate({});
+    // console.log(tbtDocs)
+
     //const response = await GPT_INSTANCE.getRemovedProblemResponse(text, tbtDocs);
     const response = await GPT_INSTANCE.getRemovedProblemResponse(text, tbtDocs);
 
