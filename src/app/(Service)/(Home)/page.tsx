@@ -141,6 +141,8 @@ export default function Home() {
     const [loading, setLoading] = useState(false);
 
     const onClickSearchButton = async () => {
+        setOriginalDoc(searchText);
+
         setLoading(true);
 
         const res = await fetch('/api/v1/docs', {
@@ -184,7 +186,6 @@ export default function Home() {
 
     const onChangeSearchText = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
         setSearchText(e.target.value);
-        setOriginalDoc(e.target.value);
     };
 
     const emphasizeDoc = (originalDoc: string, toCompareDoc: string) => {
@@ -225,7 +226,7 @@ export default function Home() {
     };
 
     return (
-        <div className="relative z-20 w-full h-full flex items">
+        <div className="relative z-20 w-full h-full flex items-center">
             <div className="flex flex-col h-full ml-auto">
                 <div className="my-auto mx-auto font-IBMPlexSansKRSemiBold text-4xl text-slate-700 text-center">UNTBT입니다, 무엇을 도와드릴까요?</div>
                 <SearchInput onChangeSearchText={onChangeSearchText} onClickSearchButton={onClickSearchButton} />
@@ -245,7 +246,7 @@ export default function Home() {
                 <div className="text-2xl h-16 flex justify-center items-center font-IBMPlexSansKRSemiBold text-center text-slate-700">
                     <p>피드백</p>
                 </div>
-                <div className="w-full h-full text-center px-4 py-6 overflow-y-auto overflow-x-clip bg-white">{removedDoc ? emphasizeDoc(searchText, removedDoc) : result}</div>
+                <div className="w-full h-full text-center px-4 py-6 overflow-y-auto overflow-x-clip bg-white">{removedDoc ? emphasizeDoc(originalDoc, removedDoc) : result}</div>
                 {/* <textarea readOnly className="w-full h-full text-center resize-none drop-shadow-lg" /> */}
             </div>
         </div>
