@@ -2,7 +2,7 @@
 
 import CircleLoading from '@/components/CircleLoading';
 import SearchInput from '@/components/SearchInput';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 function findMissingParts(original: string, comparison: string) {
     let originalIndex = 0;
@@ -212,15 +212,22 @@ const MOCK3 = `
 
 export default function Home() {
     const [searchText, setSearchText] = useState('');
+    const [isInitial, setIsInitial] = useState(true);
     // const [result, setResult] = useState('')
     const [report, setReport] = useState('');
     const [removedDoc, setRemovedDoc] = useState('');
     const [originalDoc, setOriginalDoc] = useState('');
     const [result, setResult] = useState('');
+    const [docs, setDocs] = useState<any | null>(null);
 
     const [loading, setLoading] = useState(false);
 
     const onClickSearchButton = async () => {
+
+        if (searchText == "") {
+            return alert("빈 searchText 값")
+        }
+
         if (loading) return;
 
         setOriginalDoc(searchText);
@@ -239,32 +246,43 @@ export default function Home() {
 
         const docs = await res.json();
 
+        setDocs(docs)
         setReport(docs.message);
-
-        if (docs.isTradable) {
-            setLoading(false);
-            setResult('통관 가능한 문서이므로 추가 피드백이 필요하지 않습니다.');
-            setRemovedDoc('');
-            return;
-        } else {
-            const resForEmph = await fetch('/api/v1/remove', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    text: searchText,
-                    // tbtDocs: report,
-                }),
-            });
-
-            const docsForEmph = await resForEmph.json();
-
-            setRemovedDoc(docsForEmph.message);
-
-            setLoading(false);
-        }
+        setIsInitial(false)
     };
+
+    useEffect(() => {
+        async function init() {
+            if (docs?.isTradable) {
+                setLoading(false);
+                setResult('통관 가능한 문서이므로 추가 피드백이 필요하지 않습니다.');
+                setRemovedDoc('');
+                return;
+            } else {
+                const resForEmph = await fetch('/api/v1/remove', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        text: searchText,
+                        tbtDocs: report
+                    }),
+                });
+    
+                const docsForEmph = await resForEmph.json();
+    
+                setRemovedDoc(docsForEmph.message);
+    
+                setLoading(false);
+            }
+        }
+
+        if (isInitial) {
+            return
+        }
+        init()
+    }, [docs, isInitial])
 
     const onChangeSearchText = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
         setSearchText(e.target.value);
@@ -272,11 +290,11 @@ export default function Home() {
 
     const emphasizeDoc = (originalDoc: string, toCompareDoc: string) => {
         // console.log('originalDoc', originalDoc);
-        // console.log('toCompareDoc', toCompareDoc);
+         console.log('toCompareDoc', toCompareDoc);
 
         const emphasizedDoc = findMissingParts(originalDoc, toCompareDoc);
 
-        // console.log('emphasizedDoc', emphasizedDoc);
+         console.log('emphasizedDoc', emphasizedDoc);
 
         return (
             <>
