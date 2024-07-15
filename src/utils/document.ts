@@ -65,7 +65,7 @@ class GPT {
                     content: textForTBT,
                 },
             ],
-            temperature: 0
+            temperature: 1.3,
         });
 
         return GPTResponse.choices[0].message.content;
@@ -84,7 +84,7 @@ class GPT {
                     content: `FIRST DOCUMENT: ${textForUserDoc} / SECOND DOCUMENT: ${textForTBT}`,
                 },
             ],
-            temperature: 0//1.3
+            temperature: 1.3, //1.3
         });
 
         return GPTResponse.choices[0].message.content;

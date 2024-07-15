@@ -113,21 +113,19 @@ const MOCK = `
 `;
 
 const MOCK2 = `
-### 서론
+### 클래식 담배 제품 설명서
 
-식품 연구는 인류의 건강과 안전, 그리고 삶의 질을 향상시키기 위해 필수적인 분야입니다. 이 연구는 식품의 영양성분, 안전성, 저장성, 그리고 새로운 식품 개발 등을 포함합니다.
+클래식 담배는 클래식 타바코 컴퍼니에서 제조한 고급 연초 담배입니다. 이 제품은 부드러운 흡입감과 고급스러운 맛을 제공하기 위해 최고의 연초와 엄선된 향료를 사용하여 제작되었습니다. 활성탄 필터가 포함되어 있어 유해 물질을 어느 정도 차단하며, 부드러운 연기를 즐길 수 있습니다. 한 팩에는 20개비의 담배가 들어 있으며, 니코틴 함량은 0.8mg, 타르 함량은 10mg입니다.
 
-### 연구 내용
+사용 방법은 다음과 같습니다. 포장을 개봉하여 담배를 꺼낸 후, 한쪽 끝을 입에 물고 반대쪽 끝에 라이터나 성냥으로 불을 붙입니다. 담배에 불이 붙으면 천천히 흡입하고, 흡입 후에는 천천히 내쉬어 연기를 뿜어냅니다. 담배의 필터 부분을 입에 물고 흡연하여 필터가 연기의 유해 물질을 걸러주도록 합니다. 흡연 후에는 담배를 재떨이에 넣고 불을 꺼줍니다. 재떨이에 남은 담배는 확실히 불이 꺼졌는지 확인해야 합니다.
 
-식품 연구는 주로 영양학, 미생물학, 화학, 공학 등의 학문을 바탕으로 진행됩니다. 영양학 연구에서는 식품의 영양성분 분석과 이를 통한 건강 증진 방법을 모색합니다. 미생물학 연구는 식품 안전성을 위해 유해 미생물의 검출 및 제어 방법을 개발합니다. 화학적 연구는 식품 첨가물, 보존제, 그리고 식품의 화학적 변화 등을 다룹니다. 공학적 접근은 식품의 가공, 포장, 저장 기술을 개선하여 신선도와 맛을 유지하는 방법을 찾습니다.
+클래식 담배를 사용할 때 몇 가지 주의 사항을 숙지해야 합니다. 담배 흡연은 폐암, 심장병, 호흡기 질환 등의 원인이 될 수 있으므로 건강을 위해 금연을 권장합니다. 또한, 대한민국 법에 따라 만 19세 미만의 청소년에게 담배를 판매하는 것은 불법입니다. 담배는 서늘하고 건조한 곳에 보관하고, 직사광선을 피하며 어린이의 손이 닿지 않는 곳에 보관해야 합니다. 흡연 시 주변에 인화성 물질이 없도록 주의하고, 흡연 후에는 담배의 불을 확실히 꺼야 합니다.
 
-### 응용 및 발전
+클래식 담배는 최상급의 연초 잎을 사용하여 풍부하고 부드러운 맛을 제공합니다. 또한, 담배 고유의 자극적인 맛과 흡연의 만족감을 높여주는 니코틴을 포함하고 있으며, 연초 연소 과정에서 발생하는 타르는 담배의 풍미와 연기의 질감을 좌우합니다. 천연 및 합성 향료를 사용하여 담배의 독특한 맛을 제공하며, 활성탄과 셀룰로오스를 포함한 필터가 연기의 유해 물질을 걸러줍니다.
 
-최근에는 식품의 기능성을 강화하기 위한 연구가 활발히 진행되고 있습니다. 이는 특정 건강 문제를 해결하거나 예방할 수 있는 기능성 식품 개발로 이어집니다. 예를 들어, 프로바이오틱스나 항산화제 함유 식품은 면역력 증진과 노화 방지에 기여할 수 있습니다.
+제품에 대한 문의나 불만 사항이 있을 경우, 클래식 타바코 컴퍼니의 고객 지원 서비스를 통해 도움을 받을 수 있습니다. 고객센터 전화는 080-123-4567이며, 이메일은 support@classictobacco.com입니다. 또한, 웹사이트 [www.classictobacco.com](http://www.classictobacco.com)에서도 다양한 정보를 확인할 수 있습니다.
 
-### 결론
-
-식품 연구는 인류의 건강과 복지에 큰 영향을 미치며, 지속적인 연구와 혁신을 통해 더욱 안전하고 영양가 높은 식품을 제공할 수 있습니다. 이러한 연구는 미래 식량 문제 해결에도 중요한 역할을 할 것입니다.
+본 제품 설명서는 한국의 법적 규제를 준수하며 작성되었습니다. 제품 사용 시 관련 법규를 준수하고, 담배의 유해성에 대한 충분한 이해를 바탕으로 책임 있는 흡연을 권장합니다. 클래식 담배는 최고의 품질과 만족을 제공하기 위해 항상 노력하고 있으며, 고객 여러분의 건강과 안전을 최우선으로 생각하고 더 나은 제품을 위해 끊임없이 연구하고 개발하겠습니다. 감사합니다.
 `;
 
 const MOCK3 = `
@@ -223,9 +221,8 @@ export default function Home() {
     const [loading, setLoading] = useState(false);
 
     const onClickSearchButton = async () => {
-
-        if (searchText == "") {
-            return alert("빈 searchText 값")
+        if (searchText == '') {
+            return alert('빈 searchText 값');
         }
 
         if (loading) return;
@@ -246,9 +243,9 @@ export default function Home() {
 
         const docs = await res.json();
 
-        setDocs(docs)
+        setDocs(docs);
         setReport(docs.message);
-        setIsInitial(false)
+        setIsInitial(false);
     };
 
     useEffect(() => {
@@ -266,23 +263,23 @@ export default function Home() {
                     },
                     body: JSON.stringify({
                         text: searchText,
-                        tbtDocs: report
+                        tbtDocs: report,
                     }),
                 });
-    
+
                 const docsForEmph = await resForEmph.json();
-    
+
                 setRemovedDoc(docsForEmph.message);
-    
+
                 setLoading(false);
             }
         }
 
         if (isInitial) {
-            return
+            return;
         }
-        init()
-    }, [docs, isInitial])
+        init();
+    }, [docs, isInitial]);
 
     const onChangeSearchText = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
         setSearchText(e.target.value);
@@ -290,11 +287,11 @@ export default function Home() {
 
     const emphasizeDoc = (originalDoc: string, toCompareDoc: string) => {
         // console.log('originalDoc', originalDoc);
-         console.log('toCompareDoc', toCompareDoc);
+        console.log('toCompareDoc', toCompareDoc);
 
         const emphasizedDoc = findMissingParts(originalDoc, toCompareDoc);
 
-         console.log('emphasizedDoc', emphasizedDoc);
+        console.log('emphasizedDoc', emphasizedDoc);
 
         return (
             <>

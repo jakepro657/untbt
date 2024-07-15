@@ -147,7 +147,7 @@ export const GPT_REPORT_PROMPT = `
     </Context>
 
     <Instructions>
-        *** VERY IMPORTANT ***: WRITE A REPORT THAT INFERENCES IF USER CAN TRADE THE PRODUCT OR NOT. WRITE IN KOREAN.
+        *** VERY IMPORTANT ***: WRITE A REPORT THAT INFERENCES IF USER CAN TRADE THE PRODUCT OR NOT. WRITE IN KOREAN. WRITE IT IN PARAGRAPH FORM.
         You have to make a report about the following two texts.
         If it is possible to trade the product, you have to write "YES".
         If it is not possible to trade the product, you have to write "NO".
@@ -177,22 +177,22 @@ export const GPT_REMOVED_REPORT_PROMPT = `
         Extract the texts from the first document except the 1~5 related sentences with the second document.
     </Instructions>
 `;
-    
-    // *** VERY IMPORTANT ***: YOU MUST REMOVE ONLY THE PART WHERE THE USER DOCUMENT TEXT DIRECTLY CONFLICTS WITH THE TRADE BARRIER DOCUMENT. REMEMBER!!!!! REVISING THE DOCUMENT IS BAD!!!!!
-    // *** IMPORTANT ***: 
-    //     LEAVE IT BE THAT THE REST OF THE TEXTS EXCEPT THE VIOLATED SECTION.
-    //     KEEP THE FORMAT OF THE TEXT AS MUCH AS POSSIBLE.
-    //     JUST PICK AND REMOVE THE PARTS THAT THE FIRST DOCUMENT IS VERY CLOSELY RELATED TO THE SECOND DOCUMENT.
 
-    //     You must find and remove only the part where the first text violates the second text. Additionally, keep the original text as much as possible.
-    //     You have to see the following two texts.
+// *** VERY IMPORTANT ***: YOU MUST REMOVE ONLY THE PART WHERE THE USER DOCUMENT TEXT DIRECTLY CONFLICTS WITH THE TRADE BARRIER DOCUMENT. REMEMBER!!!!! REVISING THE DOCUMENT IS BAD!!!!!
+// *** IMPORTANT ***:
+//     LEAVE IT BE THAT THE REST OF THE TEXTS EXCEPT THE VIOLATED SECTION.
+//     KEEP THE FORMAT OF THE TEXT AS MUCH AS POSSIBLE.
+//     JUST PICK AND REMOVE THE PARTS THAT THE FIRST DOCUMENT IS VERY CLOSELY RELATED TO THE SECOND DOCUMENT.
 
-    // The criteria for the product to be traded are as follows:
-    // Do not erase the number or subtitle of paragraphs to be removed.
-    
-        // <Instructions>
-        //     1. Compare the user's product document for trade (First Document) with the trade barrier document (Second Document).
-        //     2. Identify the parts of the First Document that directly conflict with the Second Document.
-        //     3. Remove only those conflicting parts from the First Document while keeping the rest of the text intact.
-        //     4. Maintain the original format of the First Document, including paragraph numbers and subtitles.
-        // </Instructions>
+//     You must find and remove only the part where the first text violates the second text. Additionally, keep the original text as much as possible.
+//     You have to see the following two texts.
+
+// The criteria for the product to be traded are as follows:
+// Do not erase the number or subtitle of paragraphs to be removed.
+
+// <Instructions>
+//     1. Compare the user's product document for trade (First Document) with the trade barrier document (Second Document).
+//     2. Identify the parts of the First Document that directly conflict with the Second Document.
+//     3. Remove only those conflicting parts from the First Document while keeping the rest of the text intact.
+//     4. Maintain the original format of the First Document, including paragraph numbers and subtitles.
+// </Instructions>
