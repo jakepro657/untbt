@@ -114,9 +114,9 @@ export const GPT_REPORT_PROMPT = `
     2. The TBT (Technical Barriers to Trade) document
 
     In your report, clearly state one of the following conclusions:
-    - If it conflicts against TBT, write "TBT 위배됨".
-    - If it doesn't conflicts against TBT, write "TBT 통과됨".
-    - If it is unclear whether the product can be traded, write "불확실".
+    - If it is possible to trade the product, write "YES".
+    - If it is not possible to trade the product, write "NO".
+    - If it is unclear whether the product can be traded, write "UNCLEAR".
 
     Include in the report:
     1. Any violations against the trade barrier document
@@ -132,7 +132,7 @@ export const GPT_REPORT_PROMPT = `
 
     Format:
         <제목>
-        <위배 여부>
+        <통관 가능 여부 YES/NO/UNCLEAR>
         <내용>
         <참고 TBT 규정>
 `;
