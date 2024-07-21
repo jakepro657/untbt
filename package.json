@@ -1,35 +1,46 @@
 {
-  "name": "untbt",
-  "version": "0.1.0",
-  "private": true,
-  "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "lint": "next lint"
-  },
-  "dependencies": {
-    "next": "14.2.4",
-    "react": "^18",
-    "react-dom": "^18"
-  },
-  "devDependencies": {
-    "@types/jest": "^29.5.12",
-    "@types/node": "^20.14.8",
-    "@types/react": "^18.3.3",
-    "@types/react-dom": "^18.3.0",
-    "@typescript-eslint/eslint-plugin": "^7.13.1",
-    "@typescript-eslint/parser": "^7.13.1",
-    "eslint": "^9.5.0",
-    "eslint-config-next": "14.2.4",
-    "eslint-config-prettier": "^9.1.0",
-    "eslint-plugin-prettier": "^5.1.3",
-    "eslint-plugin-react": "^7.34.3",
-    "eslint-plugin-react-hooks": "^4.6.2",
-    "postcss": "^8",
-    "prettier": "^3.3.2",
-    "tailwindcss": "^3.4.1",
-    "typescript": "^5.5.2"
-  },
-  "packageManager": "yarn@4.3.1"
+    "name": "untbt",
+    "version": "0.1.0",
+    "private": true,
+    "type": "module",
+    "scripts": {
+        "seed": "node prisma/seed.js",
+        "dev": "next dev",
+        "build": "yarn pnpify prisma generate && next build",
+        "start": "next start",
+        "lint": "next lint"
+    },
+    "dependencies": {
+        "@headlessui/react": "^2.1.0",
+        "@heroicons/react": "^2.1.4",
+        "@prisma/client": "5.17.0",
+        "@yarnpkg/pnpify": "^4.1.0",
+        "clsx": "^2.1.1",
+        "next": "14.2.4",
+        "openai": "^4.52.0",
+        "react": "^18",
+        "react-dom": "^18"
+    },
+    "devDependencies": {
+        "@types/jest": "^29.5.12",
+        "@types/node": "^20.14.11",
+        "@types/react": "^18.3.3",
+        "@types/react-dom": "^18.3.0",
+        "@typescript-eslint/eslint-plugin": "^7.13.1",
+        "@typescript-eslint/parser": "^7.13.1",
+        "csv-parser": "^3.0.0",
+        "eslint": "^9.5.0",
+        "eslint-config-next": "14.2.4",
+        "eslint-config-prettier": "^9.1.0",
+        "eslint-plugin-prettier": "^5.1.3",
+        "eslint-plugin-react": "^7.34.3",
+        "eslint-plugin-react-hooks": "^4.6.2",
+        "postcss": "^8",
+        "prettier": "3.3.2",
+        "prisma": "5.17.0",
+        "tailwindcss": "^3.4.4",
+        "ts-node": "^10.9.2",
+        "typescript": "^5.5.3"
+    },
+    "packageManager": "yarn@4.3.1"
 }

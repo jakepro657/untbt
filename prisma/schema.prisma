@@ -1,0 +1,55 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+generator client {
+  provider = "prisma-client-js"
+  output   = "./generated/client"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model TradeDocument {
+  id                    Int       @id @default(autoincrement())
+  notificationType      String?
+  notificationYear      Int?
+  notificationNumber    Int?
+  continentCode         String?
+  continentName         String?
+  countryCode           String?
+  countryName           String?
+  notificationDetailSeq Int?
+  itemCategoryCode      String?
+  itemCategoryName      String?
+  middleCategoryCode    String?
+  middleCategoryName    String?
+  symbol                String?
+  documentType          String?
+  documentTypeName      String?
+  titleKorean           String?
+  titleEnglish          String?
+  itemNameKorean        String?
+  itemNameEnglish       String?
+  notificationDate      DateTime?
+  adoptionPlannedDate   DateTime?
+  enforcementDate       DateTime?
+  commentDeadline       DateTime?
+  mainContentKorean     String?
+  mainContentEnglish    String?
+  article_2_9_2         Boolean?
+  article_2_10_1        Boolean?
+  article_3_2           Boolean?
+  article_5_6_2         Boolean?
+  article_5_7_1         Boolean?
+  article_7_2           Boolean?
+  article_10_7          Boolean?
+  article_10_10         Boolean?
+  article_10_11         Boolean?
+  icsCode               String?
+  notificationDetailUrl String?
+  entryDate             DateTime?
+}
