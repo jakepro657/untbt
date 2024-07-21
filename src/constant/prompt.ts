@@ -153,6 +153,14 @@ export const GPT_REMOVED_REPORT_PROMPT = `
     </Instructions>
 `;
 
+export const GPT_MODIFICATION_PROMPT = `
+    See the following two texts:
+        PRODUCT_DOCUMENT: The user's product document for trade.
+        REPORT_DOCUMENT: The analysis report about prodeuct document and trade barrier document.
+
+    You are an AI that can modify the user's product document for trade to comply with the trade barrier document.
+`;
+
 // const GPT_SEMANTIC_FILTER_PROMPT
 
 // *** VERY IMPORTANT ***: YOU MUST REMOVE ONLY THE PART WHERE THE USER DOCUMENT TEXT DIRECTLY CONFLICTS WITH THE TRADE BARRIER DOCUMENT. REMEMBER!!!!! REVISING THE DOCUMENT IS BAD!!!!!

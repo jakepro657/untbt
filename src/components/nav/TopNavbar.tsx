@@ -1,13 +1,13 @@
-import { Disclosure, DisclosureButton, DisclosurePanel, Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/react'
-import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline'
+import { Disclosure, DisclosureButton, DisclosurePanel, Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/react';
+import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline';
 
 const navigation = [
-    { name: 'TBT 통관 분석', href: '#', current: true },
-    { name: '마이페이지', href: '#', current: false },
-]
+    { name: 'TBT 통관 분석', href: '/', current: false },
+    { name: '문서 자동화', href: '/autofix', current: false },
+];
 
 function classNames(...classes: any[]) {
-    return classes.filter(Boolean).join(' ')
+    return classes.filter(Boolean).join(' ');
 }
 
 export default function TopNavbar() {
@@ -22,24 +22,16 @@ export default function TopNavbar() {
                                 <DisclosureButton className="relative inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
                                     <span className="absolute -inset-0.5" />
                                     <span className="sr-only">Open main menu</span>
-                                    {open ? (
-                                        <XMarkIcon className="block h-6 w-6" aria-hidden="true" />
-                                    ) : (
-                                        <Bars3Icon className="block h-6 w-6" aria-hidden="true" />
-                                    )}
+                                    {open ? <XMarkIcon className="block h-6 w-6" aria-hidden="true" /> : <Bars3Icon className="block h-6 w-6" aria-hidden="true" />}
                                 </DisclosureButton>
                             </div>
                             <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
                                 <div className="flex flex-shrink-0 items-center">
-                                    <img
-                                        className="h-8 w-auto"
-                                        src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500"
-                                        alt="Your Company"
-                                    />
+                                    <img className="h-8 w-auto" src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500" alt="Your Company" />
                                 </div>
                                 <div className="hidden sm:ml-6 sm:block">
                                     <div className="flex space-x-4">
-                                        {navigation.map((item) => (
+                                        {navigation.map(item => (
                                             <a
                                                 key={item.name}
                                                 href={item.href}
@@ -84,30 +76,21 @@ export default function TopNavbar() {
                                     >
                                         <MenuItem>
                                             {({ focus }) => (
-                                                <a
-                                                    href="#"
-                                                    className={classNames(focus ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
-                                                >
+                                                <a href="#" className={classNames(focus ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}>
                                                     Your Profile
                                                 </a>
                                             )}
                                         </MenuItem>
                                         <MenuItem>
                                             {({ focus }) => (
-                                                <a
-                                                    href="#"
-                                                    className={classNames(focus ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
-                                                >
+                                                <a href="#" className={classNames(focus ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}>
                                                     Settings
                                                 </a>
                                             )}
                                         </MenuItem>
                                         <MenuItem>
                                             {({ focus }) => (
-                                                <a
-                                                    href="#"
-                                                    className={classNames(focus ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
-                                                >
+                                                <a href="#" className={classNames(focus ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}>
                                                     Sign out
                                                 </a>
                                             )}
@@ -120,7 +103,7 @@ export default function TopNavbar() {
 
                     <DisclosurePanel className="sm:hidden">
                         <div className="space-y-1 px-2 pb-3 pt-2">
-                            {navigation.map((item) => (
+                            {navigation.map(item => (
                                 <DisclosureButton
                                     key={item.name}
                                     as="a"
@@ -139,5 +122,5 @@ export default function TopNavbar() {
                 </>
             )}
         </Disclosure>
-    )
+    );
 }

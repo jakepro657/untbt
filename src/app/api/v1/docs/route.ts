@@ -1,4 +1,5 @@
 import GPT_INSTANCE from '@/utils/document';
+import prisma from '@/utils/prisma';
 import QUERY_INSTANCE from '@/utils/query';
 import { NextResponse } from 'next/server';
 
@@ -17,10 +18,17 @@ export async function POST(req: Request) {
         middleCategoryCode: c2,
     });
 
-    console.log(tbtDocs);
+    // console.log(tbtDocs);
 
     //const response = await GPT_INSTANCE.getRemovedProblemResponse(text, tbtDocs);
     const response = await GPT_INSTANCE.getReportResponse(text, tbtDocs?.join('\n-------------------------------\n') || '');
+
+    await prisma.history.create({
+        data: {
+            productDocument: text,
+            report: response,
+        },
+    });
 
     const isTradable = response?.includes('YES');
 

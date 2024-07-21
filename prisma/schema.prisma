@@ -53,3 +53,9 @@ model TradeDocument {
   notificationDetailUrl String?
   entryDate             DateTime?
 }
+
+model History {
+  id              Int     @id @default(autoincrement())
+  productDocument String?
+  report          String?
+}
