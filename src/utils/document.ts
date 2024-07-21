@@ -1,4 +1,4 @@
-import { GPT_REPORT_PROMPT, GPT_SEMANTIC_FILTER_PROMPT, GPT_SEMANTIC_SEARCH_PROMPT, GPT_REMOVED_REPORT_PROMPT } from '@/constant/prompt';
+import { GPT_REPORT_PROMPT, GPT_SEMANTIC_SEARCH_PROMPT, GPT_REMOVED_REPORT_PROMPT } from '@/constant/prompt';
 import OpenAI from 'openai';
 
 class GPT {
@@ -12,7 +12,7 @@ class GPT {
         });
     }
 
-    public async getSearchResponse(text: string): Promise<string | null> {
+    public async getCodeResponse(text: string): Promise<string | null> {
         const GPTResponse = await this.openai.chat.completions.create({
             model: 'gpt-4o',
             messages: [
@@ -30,23 +30,23 @@ class GPT {
         return GPTResponse.choices[0].message.content;
     }
 
-    public async getKeywordResponse(text: string): Promise<string | null> {
-        const GPTResponse = await this.openai.chat.completions.create({
-            model: 'gpt-4o',
-            messages: [
-                {
-                    role: 'system',
-                    content: GPT_SEMANTIC_FILTER_PROMPT,
-                },
-                {
-                    role: 'user',
-                    content: text,
-                },
-            ],
-        });
+    // public async getKeywordResponse(text: string): Promise<string | null> {
+    //     const GPTResponse = await this.openai.chat.completions.create({
+    //         model: 'gpt-4o',
+    //         messages: [
+    //             {
+    //                 role: 'system',
+    //                 content: GPT_SEMANTIC_FILTER_PROMPT,
+    //             },
+    //             {
+    //                 role: 'user',
+    //                 content: text,
+    //             },
+    //         ],
+    //     });
 
-        return GPTResponse.choices[0].message.content;
-    }
+    //     return GPTResponse.choices[0].message.content;
+    // }
 
     public async getReportResponse(textForUserDoc: string, textForTBT: string): Promise<string | null> {
         const GPTResponse = await this.openai.chat.completions.create({
@@ -58,14 +58,13 @@ class GPT {
                 },
                 {
                     role: 'user',
-                    content: textForUserDoc,
+                    content: `(PRODUCT DOCUMENT: ${textForUserDoc})`,
                 },
                 {
                     role: 'user',
-                    content: textForTBT,
+                    content: `(TBT DOCUMENT: ${textForTBT})`,
                 },
             ],
-            temperature: 1.3,
         });
 
         return GPTResponse.choices[0].message.content;
@@ -84,7 +83,6 @@ class GPT {
                     content: `FIRST DOCUMENT: ${textForUserDoc} / SECOND DOCUMENT: ${textForTBT}`,
                 },
             ],
-            temperature: 1.3, //1.3
         });
 
         return GPTResponse.choices[0].message.content;

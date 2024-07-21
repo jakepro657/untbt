@@ -1,165 +1,140 @@
+// Here is the list of ICS fields (Level 1):
+// - 01 - Generalities, terminology, standardization, documentation
+// - 03 - Services, company organization, management and quality, administration, transport, sociology
+// - 07 - Mathematics, natural sciences
+// - 11 - Health care technology
+// - 13 - Environment, health protection, safety
+// - 17 - Metrology and measurement, physical phenomena
+// - 19 - Testing
+// - 21 - Mechanical systems and components for general use
+// - 23 - Fluid systems and components for general use
+// - 25 - Manufacturing engineering
+// - 27 - Energy and heat transfer engineering
+// - 29 - Electrical engineering
+// - 31 - Electronics
+// - 33 - Telecommunications, audio and video engineering
+// - 35 - Information technology, office machines
+// - 37 - Image technology
+// - 39 - Precision mechanics, jewelry
+// - 43 - Road vehicles engineering
+// - 45 - Railway engineering
+// - 47 - Shipbuilding and marine structures
+// - 49 - Aircraft and space vehicle engineering
+// - 53 - Materials handling equipment
+// - 55 - Packaging and distribution of goods
+// - 59 - Textile and leather technology
+// - 61 - Clothing industry
+// - 65 - Agriculture
+// - 67 - Food technology
+// - 71 - Chemical technology
+// - 73 - Mining and minerals
+// - 75 - Petroleum and related technologies
+// - 77 - Metallurgy
+// - 79 - Wood technology
+// - 81 - Glass and ceramics industries
+// - 83 - Rubber and plastics industries
+// - 85 - Paper technology
+// - 87 - Paint and colour industries
+// - 91 - Construction materials and building
+// - 93 - Civil engineering
+// - 95 - Military engineering
+// - 97 - Domestic and commercial equipment, entertainment, sports
+
 export const GPT_SEMANTIC_SEARCH_PROMPT = `
-    <Context>
-        You have to analyze the following keywords,
-        and make a decision based on TBT (Trade Barriers to Trade) HS Code.
-    </Context>
+    
+    You are an expert in assigning classification codes based on specific product descriptions or Technical Barriers to Trade (TBT) documents. Your task is to analyze given product descriptions or TBT documents and identify the most appropriate classification code from the provided list.
 
-    <Instructions>
-        *** VERY IMPORTANT ***: JUST ANSWER WITH ONLY A NUMBER.
-        You have to choose the number with following branches:
-        1. Live Animals
-        2. Meat and Edible Meat Offal
-        3. Fish and Crustaceans, Molluscs and Other Aquatic Inbvertebrates
-        4. Dairy Produce; Birds Eggs; Natural Honey; Edible Products Of Animal Origin, Not Elsewhere Specified or Included
-        5. Products Of Animal Origin, Not Elsewhere Specified or Included
-        6. Live Trees and Other Plants; Bulbs, Roots and The Like; Cut Flowers and Ornamental Foliage
-        7. Edible Vegetables and Certain Roots and Tubers
-        8. Edible Fruit and Nuts; Peel Of Citrus Fruit or Melons
-        9. Coffee, Tea, Mate and Spices
-        10. Cereals
-        11. Products Of The Milling Industry; Malt; Starches; Inulin; Wheat Gluten
-        12. Oil Seeds and Oleaginous Fruits; Miscellaneous Grains, Seeds and Fruits; İndustrial or Medicinal Plants; Straw and Fodder
-        13. Lac; Gums, Resins and Other Vegetable Saps and Extracts
-        14. Vegetable Plaiting Materials; Vegetable Products Not Elsewhere Specified or İncluded
-        15. Animal or Vegetable Fats and Oils and Their Cleavage Products Prepared Edible Fats; Animal or Vegetable Waxes
-        16. Preparations Of Meat, Of Fish or Of Crustaceans, Molluscs or Other Aquatic İnvertebrates
-        17. Sugars and Sugar Confectionery
-        18. Cocoa and Cocoa Preparations
-        19. Preparations Of Cereals, Flour, Starch or Milk; Bakers' Wares
-        20. Preparations Of Vegetables, Fruit, Nuts or Other Parts Of Plants
-        21. Miscellaneous Edible Preparations
-        22. Beverages, Spirits and Vinegar
-        23. Residues and Waste From The Food İndustries; Prepared Animal Feed
-        24. Tobacco and Manufactured Tobacco Substitutes
-        25. Salt; Sulfur; Earths and Stone; Plastering Mateir Distillation; Bituminous Substances; Mineral Waxes
-        26. Ores, Slag and Ash
-        27. Mineral Fuels, Mineral Oils and Products Of Their Distillation; Bituminous Substances; Mineral Waxes
-        28. Inorganic Chemicals; Organic or İnorganic Compounds Of Precious Metals, Of Rare-Earth Metals,Of Radioactive Elements or Of İsotopes
-        29. Organic Chemicals
-        30. Pharmaceutical Products
-        31. Fertilizers
-        32. Tanning or Dyeing Extracts; Dyes, Pigments, Paints, Varnishes, Putty and Mastics
-        33. Essential Oils and Resinoids; Perfumery, Cosmetic or Toilet Preparations
-        34. Soap, Organic Surface-Active Agents, Washing Preparations, Lubricating Preparations, Artificial Waxes, Prepared Waxes, Polishing or Scouring Preparations, Candles and Similar Articles, Modeling Pastes, Dental Waxes and Dental Preparations With A Basis Of Plaster
-        35. Albuminoidal Substances; Modified Starches; Glues; Enzymes
-        36. Explosives; Pyrotechnic Products; Matches; Pyrophoric Alloys; Certain Combustible Preparations
-        37. Photographic or Cinematographic Goods
-        38. Miscellaneous Chemical Products
-        39. Plastics and Articles Thereof
-        40. Rubber and Articles Thereof
-        41. Raw Hides and Skins (Other Than Furskins) and Leather
-        42. Articles Of Leather; Saddlery and Harness; Travel Goods, Handbags and Similar Containers; Articles Of Animal Gut (Other Than Silkworm Gut)
-        43. Furskins and Artificial Fur; Manufactures Thereof
-        44. Wood and Articles Of Wood; Wood Charcoal
-        45. Cork and Articles Of Cork
-        46. Manufactures Of Straw, Of Esparto or Of Other Plaiting Materials; Basketware and Wickerwork
-        47. Pulp Of Wood or Of Other Fibrous Cellulosic Material; Waste and Scrap Of Paper or Paperboard
-        48. Paper and Paperboard; Articles Of Paper Pulp, Of Paper or Of Paperboard
-        49. Printed Books, Newspapers, Pictures and Other Products Of The Printing İndustry; Manuscripts, Typescripts and Plans
-        50. Silk
-        51. Wool, Fine or Coarse Animal Hair; Horsehafirst r
-        55. Man-Made Staple Fibers
-        56. Wadding, Felt and Nonwovens; Special Yarns, Twine, Cordage, Ropes and Cables and Articles Thereof
-        57. Carpets and Other Textile Floor Coverings
-        58. Special Woven Fabrics; Tufted Textile Fabrics; Lace, Tapestries; Trimmings; Embroidery
-        59. Impregnated, Coated, Covered or Laminated Textile Fabrics; Textile Articles Of A Kind Suitable For İndustrial Use
-        60. Knitted or Crocheted Fabrics
-        61. Articles Of Apparel and Clothing Accessories, Knitted or Crocheted
-        62. Articles Of Apparel and Clothing Accessories, Not Knitted or Crocheted
-        63. Other Made Up Textile Articles; Sets; Worn Clothing and Worn Textile Articles; Rags
-        64. Footwear, Gaiters and The Like; Parts Of Such Articles
-        65. Headgear and Parts Thereof
-        66. Umbrellas, Sun Umbrellas, Walking Sticks, Seatsticks, Whips, Riding-Crops and Parts Thereof
-        67. Prepared Feathers and Down and Articles Made Of Feathers or Of Down; Artificial Flowers; Articles Of Human Hair
-        68. Articles Of Stone, Plaster, Cement, Asbestos, Mica or Similar Materials
-        69. Ceramic Products
-        70. Glass and Glassware
-        71. Natural or Cultured Pearls, Precious or Semi-Precious Stones,Precious Metals, Metals Clad With Precious Metal and Articles Thereof; İmitation Jewelry; Coin
-        72. Iron and Steel
-        73. Articles Of İron or Steel
-        74. Copper and Articles Thereof
-        75. Nickel and Articles Thereof
-        76. Aluminum and Articles Thereof
-        78. Lead and Articles Thereof
-        79. Zinc and Articles Thereof
-        80. Tin and Articles Thereof
-        81. Other Base Metals; Cermets; Articles Thereof
-        82. Tools, İmplements, Cutlery, Spoons and Forks, Of Base Metal; Parts Thereof Of Base Metal
-        83. Miscellaneous Articles Of Base Meta49. 
-        84. Nuclear Reactors, Boilers, Machinery and Mechanical Appliances; Parts Thereof
-        85. Electrical Machinery and Equipment and Parts Thereof; Sound Recorders and Reproducers, Television İmage and Sound Recorders and Reproducers, and Parts and Accessories Of Such Articles
-        86. Railway or Tramway Locomotives, Rolling-Stock and Parts Thereof; Railway or Tramway Track Fixtures and Fittings and Parts Thereof; Mechanical (İncluding Electro-Mechanical) Traffic Signalling Equipment Of All Kinds
-        87. Vehicles Other Than Railway or Tramway Rolling Stock, and Parts and Accessories Thereof
-        88. Aircraft, Spacecraft, and Parts Thereof
-        89. Ships, Boats and Floating Structures
-        90. Optical, Photographic, Cinematographic, Measuring, Checking, Precision, Medical or Surgical İnstruments and Apparatus; Parts and Accessories Thereof
-        91. Clocks and Watches and Parts Thereof
-        92. Musical İnstruments; Parts and Accessories Of Such Articles
-        93. Arms and Ammunition; Parts and Accessories Thereof
-        94. Furniture; Bedding, Mattresses, Mattress Supports, Cushions and Similar Stuffed Furnishings; Lamps and Lighting Fittings, Not Elsewhere Specified or İncluded; İlluminated Sign İlluminated Nameplates and The Like; Prefabricated Buildings
-        95. Toys, Games and Sports Requisites; Parts and Accessories Thereof
-        96. Miscellaneous Manufactured Articles
-        97. Works Of Art, Collectors' Pieces and Antiques
-    </Instructions>
-`;
+    If the classification code includes a sub-group (Level 3), also include that in your response.
 
-/** 세관 문서input에 대해 주요 키워드들을 뽑아내는 prompt */
-export const GPT_SEMANTIC_FILTER_PROMPT = `
-    <Context>
-        You have to analyze the following text,
-        and extract keywords related to the product.
-    </Context>
+    Example:
+    Input: "This TBT document covers new regulations on safety testing methods for electric vehicle batteries."
 
-    <Instructions>
-        *** VERY IMPORTANT ***: JUST ANSWER ONLY WITH A LIST OF KEYWORDS.
-        IMPORTANT: You have to extract all kewords related to the following category. 
-        IMPORTANT: You have to reduce the keywords that are relatively less relevant to the following category to five or less.
-        1 Live Animals, Animal Products 
-        2 Fresh Fruits and Vegetables & Other Vegetable Products
-        3 Animal and Vegetable Fats & Oils, Prepared Edible Fats, Animal Or Vegetable Waxes
-        4 Prepared Foodstuffs, Beverages, Spirits, Vinegar & Tobacco Products
-        5 Mineral Products 
-        6 Chemical Products
-        7 Plastic and Rubber Products
-        8 Leather, Handbags,Travel Goods, Saddlery, Harness, Raw Hides and Skins, Furskins & Animal Gut Products
-        9 Wood & Wood Products, Wood Charcoal, Cork, Basketware, Wickerwork
-        10 Paper & Paperboard Products, Wood Pulp, Paper Waste & Scrap
-        11 Textile, Clothing & Home Textiles
-        12 Footwear, Headgear, Artificial Flowers, Umbrellas, Walking Sticks, Seatsticks, Whips, Riding-Crops, Prepared Feathers, Human Hair Products
-        13 Stone, Marble, Plaster, Cement, Asbestos, Mica Products,Ceramic Products, Glass & Glassware
-        14 NJewelry, Precious Metals, Precious&Semiprecious Stones, Pearls, Imitation Jewelry, Coin
-        15 Metals & Metal Products
-        16 Machinery, Electronics, Electrical Equipment
-        17 Vehicles, Aircraft, Vessels & Other Transport Equipment
-        18 Antiques, Art Works, Collectors' Pieces
-        19 Medical Instruments, Optical, Photographic, Cinematographic, Measuring, Checking, Precision Instruments, Clocks&Watches, Musical instruments
-        20 Arms And Ammunition
-        21 Furniture, Bedding, Mattresses, Cushions, Lamps and Lighting Fittings, İlluminated Signs, Prefabricated Buildings & Miscellaneous Products
-        
-    </Instructions>
+    Output: 17.2
+
+    *** IMPORTANT ***: MUST PROVIDE JUST THE CLASSIFICATION CODE. DO NOT INCLUDE ANY OTHER INFORMATION.
+    Now, please provide the product description or TBT document you'd like me to analyze.
+
+    Classification Codes:
+
+    1. 에너지
+        9: 원자력
+        11: 전지
+        2: 가스기기및가스용기
+    3. 전기전자
+        2: 가전기기(냉장고,세탁기등)
+        6: 전기기기
+        1: 부품및전선류
+        5: 일반(RoHS,WEEE등)
+        4: 광응용기기(조명등)
+    5. 기계
+        3: 정밀광학기기
+        12: 계량,계측및분석기기
+    6. 화학세라믹
+        1: 플라스틱소재및제품
+        4: 농약,비료,살충제
+        2: 도료및계면활성제
+        6: 일반(화학물질관리시스템등)
+        5: 도자기,유리,타일류
+    7. 정보디지털
+        2: 유무선통신
+    8. 생활용품
+        5: 일반
+        2: 완구및어린이용품
+        4: 오락,레저,스포츠
+        1: 섬유소재및제품
+    9. 바이오환경
+        5: 일반(GHG,VOC등)
+        6: 친환경소재및제품
+    10. 소재나노
+        3: 기계요소부품(나사,볼트등)
+    12. 식의약품(보건의료또는헬스케어)
+        1: 식품
+        2: 의약품
+        3: 화장품
+        4: 의료기기(의료장비)
+    13. 농수산품
+        1: 농산물
+    17. 교통/안전
+        2: 자동차
+        1: 일반
+    18. 건설
+        5: 설계기준
+        3: 건축안전
+        4: 건설재료
+
 `;
 /** */
 export const GPT_REPORT_PROMPT = `
-    <Context>
-        You have to see the following two texts.
-        First is the text about user's product document for trade.
-        Second is the text about the trade barrier document.
-    </Context>
+    *** MUST ***: Do not make arbitrary judgments; analyze strictly according to the TBT document.
 
-    <Instructions>
-        *** VERY IMPORTANT ***: WRITE A REPORT THAT INFERENCES IF USER CAN TRADE THE PRODUCT OR NOT. WRITE IN KOREAN. WRITE IT IN PARAGRAPH FORM.
-        You have to make a report about the following two texts.
-        If it is possible to trade the product, you have to write "YES".
-        If it is not possible to trade the product, you have to write "NO".
+    *** VERY IMPORTANT ***: WRITE A REPORT INFERRING WHETHER THE USER CAN TRADE THE PRODUCT OR NOT. WRITE IN KOREAN. USE PARAGRAPH FORM.
 
-        You have to include into the report the violations against the trade barrier document, and mention the rules that the document did it.
-        
-        *** IMPORTANT ***: The criteria for the product to be traded are as follows:
-            The product is not related to the trade barrier document.
-            If the product is related to the trade barrier document, the product is prohibited from trading.
-            YOU MUST WRITE IN DETAIL THE FACOTRS THAT COULD CAUSE TRADE TO FAIL IN RELATION TO THE PRODUCT'S TRADE BARRIER DOCUMENT.
-        If it is not clear whether the product can be traded, you have to write "UNCLEAR".
-    </Instructions>
+    You must create a report based on the following two texts:
+    1. The product description
+    2. The TBT (Technical Barriers to Trade) document
+
+    In your report, clearly state one of the following conclusions:
+    - If it is possible to trade the product, write "YES".
+    - If it is not possible to trade the product, write "NO".
+    - If it is unclear whether the product can be traded, write "UNCLEAR".
+
+    Include in the report:
+    1. Any violations against the trade barrier document
+    2. Mention the specific rules that the product violates or complies with
+
+    *** IMPORTANT ***: The criteria for determining if a product can be traded are as follows:
+    1. The product is not related to the trade barrier document.
+    2. If the product is related to the trade barrier document, the product is prohibited from trading.
+
+    YOU MUST WRITE IN DETAIL THE FACTORS THAT COULD CAUSE TRADE TO FAIL IN RELATION TO THE PRODUCT'S TRADE BARRIER DOCUMENT.
+
+    Provide a comprehensive analysis based solely on the information given in the product description and TBT document. Do not make assumptions beyond the provided information.
+
+    Format:
+        <제목>
+        <통관 가능 여부 YES/NO/UNCLEAR>
+        <내용>
+        <참고 TBT 규정>
 `;
 
 export const GPT_REMOVED_REPORT_PROMPT = `
@@ -177,6 +152,8 @@ export const GPT_REMOVED_REPORT_PROMPT = `
         Extract the texts from the first document except the 1~5 related sentences with the second document.
     </Instructions>
 `;
+
+// const GPT_SEMANTIC_FILTER_PROMPT
 
 // *** VERY IMPORTANT ***: YOU MUST REMOVE ONLY THE PART WHERE THE USER DOCUMENT TEXT DIRECTLY CONFLICTS WITH THE TRADE BARRIER DOCUMENT. REMEMBER!!!!! REVISING THE DOCUMENT IS BAD!!!!!
 // *** IMPORTANT ***:

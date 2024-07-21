@@ -6,9 +6,21 @@ import { NextResponse } from 'next/server';
 export async function POST(req: Request) {
     const { text } = await req.json();
 
-    const tbtDocs = await QUERY_INSTANCE.operate({});
+    const codes: any = await GPT_INSTANCE.getCodeResponse(text);
+
+    console.log(codes);
+
+    const [c1, c2] = codes.split('.');
+
+    const tbtDocs = await QUERY_INSTANCE.operate({
+        itemCategoryCode: c1,
+        middleCategoryCode: c2,
+    });
+
+    console.log(tbtDocs);
+
     //const response = await GPT_INSTANCE.getRemovedProblemResponse(text, tbtDocs);
-    const response = await GPT_INSTANCE.getReportResponse(text, tbtDocs);
+    const response = await GPT_INSTANCE.getReportResponse(text, tbtDocs?.join('\n-------------------------------\n') || '');
 
     const isTradable = response?.includes('YES');
 

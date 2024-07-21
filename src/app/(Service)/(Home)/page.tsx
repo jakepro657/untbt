@@ -3,282 +3,82 @@
 import CircleLoading from '@/components/CircleLoading';
 import SearchInput from '@/components/SearchInput';
 import { useEffect, useState } from 'react';
-
-function findMissingParts(original: string, comparison: string) {
-    let originalIndex = 0;
-    let comparisonIndex = 0;
-    let missingParts = '';
-
-    while (originalIndex < original.length) {
-        // 비교할 문자열이 끝났거나, 현재 문자가 일치하지 않으면
-        if (comparisonIndex >= comparison.length || original[originalIndex] !== comparison[comparisonIndex]) {
-            missingParts += original[originalIndex]; // 누락된 부분을 저장
-        } else {
-            comparisonIndex++; // 일치하면 비교 문자열의 인덱스를 증가
-        }
-        originalIndex++; // 원래 문자열의 인덱스를 증가
-    }
-
-    return missingParts;
-}
-const MOCK = `
- 담배 증류 기술은 담배 식물에서 유효 성분을 추출하고 농축하는 과정으로, 주로 니코틴과 같은 알칼로이드 성분의 농축을 목적으로 합니다. 이 기술은 담배 제품의 제조, 연구 및 개발, 그리고 의약품 생산에 중요한 역할을 합니다. 이 문서에서는 담배 증류 기술의 원리, 공정, 장비, 응용 분야 및 최신 연구 동향을 다룹니다.
- 담배 증류는 기본적으로 담배 식물에서 특정 성분을 분리해내는 과정입니다. 이 과정은 여러 단계로 나누어지며, 각 단계는 물리적 또는 화학적 원리를 기반으로 합니다. 주요 단계는 다음과 같습니다:
-
-1.1. 추출 (Extraction)
-
-목적: 담배 잎에서 니코틴을 포함한 주요 성분을 추출.
-방법: 유기 용매(예: 에탄올, 메탄올)를 사용하여 담배 잎을 침출.
-원리: 용매가 담배 잎의 세포벽을 통과하여 내부의 유효 성분을 용해.
-1.2. 증류 (Distillation)
-
-목적: 추출된 용액에서 순수한 니코틴을 분리.
-방법: 용액을 가열하여 성분을 증발 및 응축.
-원리: 각 성분의 끓는점 차이를 이용하여 분리.
-1.3. 정제 (Purification)
-
-목적: 증류된 니코틴의 순도 향상.
-방법: 재증류, 크로마토그래피 등을 이용한 정제.
-원리: 불순물의 물리적, 화학적 특성 차이를 이용하여 분리.
-
-담배 증류 공정은 여러 단계로 구성되며, 각 단계는 고유의 장비와 기술을 필요로 합니다. 아래는 전형적인 담배 증류 공정의 흐름도입니다.
-
-2.1. 원료 준비
-
-담배 잎 선별 및 세척: 고품질의 담배 잎을 선별하고, 이물질 제거를 위해 세척.
-
-2.2. 추출 단계
-
-용매 추출: 담배 잎을 용매에 침지하여 주요 성분을 추출.
-추출 시간 및 온도 조절: 최적의 추출 효율을 위해 시간 및 온도 조절.
-2.3. 증류 단계
-
-1차 증류: 추출액을 가열하여 니코틴을 증류.
-응축: 증발된 니코틴을 응축기로 모아 액체 상태로 변환.
-2.4. 정제 단계
-
-재증류: 필요시 니코틴을 재증류하여 순도를 높임.
-크로마토그래피: 추가 정제를 위해 크로마토그래피 사용.
-
-담배 증류 과정에서 사용되는 주요 장비는 다음과 같습니다:
-
-3.1. 추출기 (Extractor)
-
-종류: Soxhlet 추출기, 연속 추출기 등.
-역할: 담배 잎에서 유효 성분을 추출.
-3.2. 증류기 (Distiller)
-
-종류: 간헐식 증류기, 연속식 증류기.
-역할: 추출액에서 니코틴을 분리.
-3.3. 응축기 (Condenser)
-
-종류: 냉각수 응축기, 공냉식 응축기.
-역할: 증발된 니코틴을 액화.
-3.4. 크로마토그래피 장비 (Chromatography Equipment)
-
-종류: 기체 크로마토그래피, 액체 크로마토그래피.
-역할: 니코틴의 순도 향상.
-
-담배 증류 기술은 다양한 분야에 응용될 수 있습니다. 주요 응용 분야는 다음과 같습니다:
-
-4.1. 담배 제품 제조
-
-목적: 니코틴 농도를 조절하여 담배 제품의 품질 향상.
-방법: 증류된 니코틴을 재배합하여 다양한 제품 생산.
-4.2. 의약품 개발
-
-목적: 니코틴의 약리적 효과를 이용한 의약품 개발.
-방법: 고순도 니코틴을 이용하여 치료제 및 금연 보조제 개발.
-4.3. 연구 및 개발
-
-목적: 니코틴 및 기타 알칼로이드의 생리적 효과 연구.
-방법: 증류된 니코틴을 이용한 실험 및 연구.
-
-최근 담배 증류 기술에 대한 연구는 지속적으로 발전하고 있으며, 주요 연구 동향은 다음과 같습니다:
-
-5.1. 친환경 추출 및 증류 기술 개발
-
-목표: 유기 용매 사용을 최소화하고, 친환경적이고 경제적인 방법 개발.
-예: 초임계 유체 추출, 초음파 보조 추출 등.
-5.2. 니코틴 대체 물질 연구
-
-목표: 니코틴의 중독성을 줄이기 위한 대체 물질 개발.
-예: 비니코틴 알칼로이드, 합성 대체물질.
-5.3. 정제 기술의 고도화
-
-목표: 니코틴의 순도 및 안정성을 높이기 위한 정제 기술 개선.
-예: 나노필터 사용, 고성능 액체 크로마토그래피(HPLC).
-
-담배 증류 기술은 담배 산업 및 의약품 개발에서 중요한 역할을 합니다. 이 기술은 고품질의 니코틴을 생산하고, 다양한 응용 분야에 활용될 수 있는 기반을 제공합니다. 최신 연구 동향을 반영하여, 더욱 친환경적이고 효율적인 방법을 개발함으로써 담배 증류 기술의 발전을 도모할 수 있습니다. 이 문서가 담배 증류 기술의 이해에 도움이 되기를 바랍니다. 추가적인 연구와 개발을 통해 이 분야의 기술이 지속적으로 발전하길 기대합니다.
-`;
-
-const MOCK2 = `
-### 클래식 담배 제품 설명서
-
-클래식 담배는 클래식 타바코 컴퍼니에서 제조한 고급 연초 담배입니다. 이 제품은 부드러운 흡입감과 고급스러운 맛을 제공하기 위해 최고의 연초와 엄선된 향료를 사용하여 제작되었습니다. 활성탄 필터가 포함되어 있어 유해 물질을 어느 정도 차단하며, 부드러운 연기를 즐길 수 있습니다. 한 팩에는 20개비의 담배가 들어 있으며, 니코틴 함량은 0.8mg, 타르 함량은 10mg입니다.
-
-사용 방법은 다음과 같습니다. 포장을 개봉하여 담배를 꺼낸 후, 한쪽 끝을 입에 물고 반대쪽 끝에 라이터나 성냥으로 불을 붙입니다. 담배에 불이 붙으면 천천히 흡입하고, 흡입 후에는 천천히 내쉬어 연기를 뿜어냅니다. 담배의 필터 부분을 입에 물고 흡연하여 필터가 연기의 유해 물질을 걸러주도록 합니다. 흡연 후에는 담배를 재떨이에 넣고 불을 꺼줍니다. 재떨이에 남은 담배는 확실히 불이 꺼졌는지 확인해야 합니다.
-
-클래식 담배를 사용할 때 몇 가지 주의 사항을 숙지해야 합니다. 담배 흡연은 폐암, 심장병, 호흡기 질환 등의 원인이 될 수 있으므로 건강을 위해 금연을 권장합니다. 또한, 대한민국 법에 따라 만 19세 미만의 청소년에게 담배를 판매하는 것은 불법입니다. 담배는 서늘하고 건조한 곳에 보관하고, 직사광선을 피하며 어린이의 손이 닿지 않는 곳에 보관해야 합니다. 흡연 시 주변에 인화성 물질이 없도록 주의하고, 흡연 후에는 담배의 불을 확실히 꺼야 합니다.
-
-클래식 담배는 최상급의 연초 잎을 사용하여 풍부하고 부드러운 맛을 제공합니다. 또한, 담배 고유의 자극적인 맛과 흡연의 만족감을 높여주는 니코틴을 포함하고 있으며, 연초 연소 과정에서 발생하는 타르는 담배의 풍미와 연기의 질감을 좌우합니다. 천연 및 합성 향료를 사용하여 담배의 독특한 맛을 제공하며, 활성탄과 셀룰로오스를 포함한 필터가 연기의 유해 물질을 걸러줍니다.
-
-제품에 대한 문의나 불만 사항이 있을 경우, 클래식 타바코 컴퍼니의 고객 지원 서비스를 통해 도움을 받을 수 있습니다. 고객센터 전화는 080-123-4567이며, 이메일은 support@classictobacco.com입니다. 또한, 웹사이트 [www.classictobacco.com](http://www.classictobacco.com)에서도 다양한 정보를 확인할 수 있습니다.
-
-본 제품 설명서는 한국의 법적 규제를 준수하며 작성되었습니다. 제품 사용 시 관련 법규를 준수하고, 담배의 유해성에 대한 충분한 이해를 바탕으로 책임 있는 흡연을 권장합니다. 클래식 담배는 최고의 품질과 만족을 제공하기 위해 항상 노력하고 있으며, 고객 여러분의 건강과 안전을 최우선으로 생각하고 더 나은 제품을 위해 끊임없이 연구하고 개발하겠습니다. 감사합니다.
-`;
-
-const MOCK3 = `
-
-### 담배 제품 설명서
-
----
-
-#### 제품명: 클래식 담배 (Classic Cigarette)
-
----
-
-#### 1. 제품 개요
-
-**제품명:** 클래식 담배  
-**제조사:** 클래식 타바코 컴퍼니 (Classic Tobacco Company)  
-**유형:** 연초 담배 (Flavored Cigarette)  
-**필터:** 활성탄 필터 (Activated Carbon Filter)  
-**포장 단위:** 20개비 (20 Cigarettes per Pack)  
-**니코틴 함량:** 0.8mg  
-**타르 함량:** 10mg
-
----
-
-#### 2. 제품 설명
-
-클래식 담배는 최고의 연초와 엄선된 향료를 사용하여 제조된 고급 담배입니다. 부드러운 흡입감과 고급스러운 맛을 제공하여 담배 애호가들에게 오랜 시간 사랑받고 있습니다. 활성탄 필터가 포함되어 있어 유해 물질을 어느 정도 차단하며, 부드러운 연기를 즐길 수 있습니다.
-
----
-
-#### 3. 사용 방법
-
-1. **포장 개봉:** 포장의 상단을 잡고 위로 열어 담배를 꺼냅니다.
-2. **담배 점화:** 담배의 한쪽 끝을 입에 물고 반대쪽 끝에 라이터나 성냥으로 불을 붙입니다.
-3. **흡입:** 담배에 불이 붙으면 천천히 흡입합니다. 흡입 후에는 천천히 내쉬어 연기를 뿜어냅니다.
-4. **필터 이용:** 담배의 필터 부분을 입에 물고 흡연하여 필터가 연기의 유해 물질을 어느 정도 걸러주도록 합니다.
-5. **흡연 종료:** 흡연 후, 담배를 재떨이에 넣고 불을 꺼줍니다. 재떨이에 남은 담배는 확실히 불이 꺼졌는지 확인합니다.
-
----
-
-#### 4. 주의 사항
-
-- **건강 경고:** 담배 흡연은 폐암, 심장병, 호흡기 질환 등의 원인이 될 수 있습니다. 건강을 위해 금연을 권장합니다.
-- **법적 경고:** 미성년자에게 판매 금지. 대한민국 법에 따라 만 19세 미만의 청소년에게 담배를 판매하는 것은 불법입니다.
-- **보관:** 담배는 서늘하고 건조한 곳에 보관하십시오. 직사광선을 피하고, 어린이의 손이 닿지 않는 곳에 보관하십시오.
-- **불 조심:** 담배를 피울 때 주변에 인화성 물질이 없도록 주의하십시오. 흡연 후 확실히 담배의 불을 꺼주세요.
-
----
-
-#### 5. 성분 정보
-
-클래식 담배는 다음과 같은 성분을 포함하고 있습니다:
-
-- **연초 (Tobacco):** 최상급의 연초 잎을 사용하여 풍부하고 부드러운 맛을 제공합니다.
-- **니코틴 (Nicotine):** 담배 고유의 자극적인 맛과 흡연의 만족감을 높여줍니다.
-- **타르 (Tar):** 연초 연소 과정에서 발생하는 물질로, 담배의 풍미와 연기의 질감을 좌우합니다.
-- **향료 (Flavoring):** 천연 및 합성 향료를 사용하여 담배의 독특한 맛을 제공합니다.
-- **필터 (Filter):** 활성탄과 셀룰로오스를 포함한 필터가 연기의 유해 물질을 걸러줍니다.
-
----
-
-#### 6. 고객 지원
-
-고객 지원 서비스는 클래식 타바코 컴퍼니를 통해 제공됩니다. 제품에 대한 문의나 불만 사항이 있을 경우 아래의 연락처를 통해 연락 주시기 바랍니다.
-
-- **고객센터 전화:** 080-123-4567
-- **이메일:** support@classictobacco.com
-- **웹사이트:** [www.classictobacco.com](http://www.classictobacco.com)
-
----
-
-#### 7. 법적 고지
-
-본 제품 설명서는 한국의 법적 규제를 준수하며 작성되었습니다. 제품 사용 시 관련 법규를 준수하시기 바랍니다. 담배의 유해성에 대한 충분한 이해를 바탕으로 책임 있는 흡연을 권장합니다.
-
----
-
-클래식 담배는 최고의 품질과 만족을 제공하기 위해 항상 노력하겠습니다. 고객 여러분의 건강과 안전을 최우선으로 생각하며, 더 나은 제품을 위해 끊임없이 연구하고 개발하겠습니다. 감사합니다.
-
----
-`;
+import { findMissingParts } from '@/utils/utils';
 
 export default function Home() {
     const [searchText, setSearchText] = useState('');
     const [isInitial, setIsInitial] = useState(true);
-    // const [result, setResult] = useState('')
     const [report, setReport] = useState('');
     const [removedDoc, setRemovedDoc] = useState('');
     const [originalDoc, setOriginalDoc] = useState('');
     const [result, setResult] = useState('');
-    const [docs, setDocs] = useState<any | null>(null);
-
+    const [docs, setDocs] = useState<any>(null);
     const [loading, setLoading] = useState(false);
 
     const onClickSearchButton = async () => {
-        if (searchText == '') {
-            return alert('빈 searchText 값');
+        if (!searchText) {
+            return alert('검색어를 입력해주세요.');
         }
 
         if (loading) return;
 
         setOriginalDoc(searchText);
-
         setLoading(true);
 
-        const res = await fetch('/api/v1/docs', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-                text: searchText,
-            }),
-        });
+        try {
+            const res = await fetch('/api/v1/docs', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ text: searchText }),
+            });
 
-        const docs = await res.json();
+            const docs = await res.json();
 
-        setDocs(docs);
-        setReport(docs.message);
-        setIsInitial(false);
+            setDocs(docs);
+            setReport(docs.message);
+            setIsInitial(false);
+        } catch (error) {
+            console.error('Error fetching docs:', error);
+        } finally {
+            setLoading(false);
+        }
     };
 
     useEffect(() => {
-        async function init() {
-            if (docs?.isTradable) {
-                setLoading(false);
+        const init = async () => {
+            if (!docs) return;
+
+            if (docs.isTradable) {
                 setResult('통관 가능한 문서이므로 추가 피드백이 필요하지 않습니다.');
                 setRemovedDoc('');
-                return;
             } else {
-                const resForEmph = await fetch('/api/v1/remove', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({
-                        text: searchText,
-                        tbtDocs: report,
-                    }),
-                });
+                try {
+                    const resForEmph = await fetch('/api/v1/remove', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({
+                            text: searchText,
+                            tbtDocs: report,
+                        }),
+                    });
 
-                const docsForEmph = await resForEmph.json();
-
-                setRemovedDoc(docsForEmph.message);
-
-                setLoading(false);
+                    const docsForEmph = await resForEmph.json();
+                    setRemovedDoc(docsForEmph.message);
+                } catch (error) {
+                    console.error('Error fetching removed parts:', error);
+                } finally {
+                    setLoading(false);
+                }
             }
-        }
+        };
 
-        if (isInitial) {
-            return;
+        if (!isInitial) {
+            init();
         }
-        init();
     }, [docs, isInitial]);
 
     const onChangeSearchText = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
@@ -286,15 +86,10 @@ export default function Home() {
     };
 
     const emphasizeDoc = (originalDoc: string, toCompareDoc: string) => {
-        // console.log('originalDoc', originalDoc);
-        console.log('toCompareDoc', toCompareDoc);
-
         const emphasizedDoc = findMissingParts(originalDoc, toCompareDoc);
 
-        console.log('emphasizedDoc', emphasizedDoc);
-
         return (
-            <>
+            <div>
                 {originalDoc
                     .trim()
                     .split('\n')
@@ -305,20 +100,13 @@ export default function Home() {
                             .split('\n')
                             .map(emph => emph.trim());
 
-                        if (emphasizedLines.includes(l)) {
-                            return (
-                                <div key={index} className="text-red-500">
-                                    {l}
-                                </div>
-                            );
-                        }
                         return (
-                            <div key={index} className="">
+                            <div key={index} className={emphasizedLines.includes(l) ? 'text-red-500' : ''}>
                                 {l}
                             </div>
                         );
                     })}
-            </>
+            </div>
         );
     };
 
@@ -344,7 +132,6 @@ export default function Home() {
                     <p>피드백</p>
                 </div>
                 <div className="w-full h-full text-center px-4 py-6 overflow-y-auto overflow-x-clip bg-white">{removedDoc ? emphasizeDoc(originalDoc, removedDoc) : result}</div>
-                {/* <textarea readOnly className="w-full h-full text-center resize-none drop-shadow-lg" /> */}
             </div>
         </div>
     );
