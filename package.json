@@ -11,6 +11,7 @@
         "lint": "next lint"
     },
     "dependencies": {
+        "@google/genai": "^1.43.0",
         "@headlessui/react": "^2.1.0",
         "@heroicons/react": "^2.1.4",
         "@prisma/client": "5.17.0",
