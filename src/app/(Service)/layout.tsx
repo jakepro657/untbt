@@ -1,7 +1,7 @@
 "use client"
-import Background from '@/components/theme/Background'
+import Background from '@/components/layout/Background'
 import React from 'react'
-import TopNavbar from "@/components/nav/TopNavbar";
+import TopNavbar from "@/components/layout/TopNavbar";
 
 type Props = {
     children: React.ReactNode

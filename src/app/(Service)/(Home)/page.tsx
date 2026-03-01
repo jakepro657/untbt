@@ -1,9 +1,9 @@
 'use client';
 
-import CircleLoading from '@/components/CircleLoading';
-import SearchInput from '@/components/SearchInput';
+import CircleLoading from '@/components/ui/CircleLoading';
+import SearchInput from '@/components/ui/SearchInput';
 import { useEffect, useState } from 'react';
-import { findMissingParts } from '@/utils/utils';
+import { findMissingParts } from '@/utils/diff';
 
 export default function Home() {
     const [searchText, setSearchText] = useState('');

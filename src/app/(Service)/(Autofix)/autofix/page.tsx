@@ -1,5 +1,5 @@
 'use client';
-import CircleLoading from '@/components/CircleLoading';
+import CircleLoading from '@/components/ui/CircleLoading';
 import React, { useLayoutEffect } from 'react';
 
 type Props = {};
