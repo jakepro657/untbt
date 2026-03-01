@@ -1,14 +1,6 @@
 import React from 'react';
 
-type Props = {};
-
-function DocsPage({}: Props) {
-    return (
-        <textarea
-            readOnly
-            className="absolute z-40 w-full h-full"
-            value={`
-무역 명세서
+const DOCUMENT_1 = `무역 명세서
 
 제품명: XYZ 맛 스낵
 
@@ -42,16 +34,9 @@ HS 코드: 1905.90
 단백질: 3g
 포장단위: 100g
 
-유통경로: 일반 슈퍼마켓 및 편의점
+유통경로: 일반 슈퍼마켓 및 편의점`;
 
-
-
-
-
-
-
-
-무역 명세서
+const DOCUMENT_2 = `무역 명세서
 
 제품명:
 프리미엄 미드 음료
@@ -111,9 +96,56 @@ HS 코드:
 슬로베니아 미드 컴퍼니
 주소: 123 미드 스트리트, 류블랴나, 슬로베니아
 이메일: sales@slovenianmead.si
-전화: +386 1 234 5678
-            `}
-        />
+전화: +386 1 234 5678`;
+
+function DocsPage() {
+    return (
+        <div className="max-w-7xl mx-auto px-4 py-8">
+            <div className="mb-8">
+                <h1 className="text-2xl font-bold text-gray-900">샘플 문서</h1>
+                <p className="mt-2 text-gray-500">
+                    분석 테스트를 위한 샘플 무역 명세서입니다.
+                </p>
+            </div>
+
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                {/* Card 1: XYZ 맛 스낵 */}
+                <div className="bg-white rounded-xl shadow-sm p-6">
+                    <h2 className="text-lg font-semibold text-gray-900">
+                        XYZ 맛 스낵
+                    </h2>
+                    <div className="mt-2 flex items-center gap-2">
+                        <span className="inline-flex items-center rounded-md bg-blue-50 px-2 py-1 text-xs font-medium text-blue-700 ring-1 ring-inset ring-blue-600/20">
+                            HS 1905.90
+                        </span>
+                        <span className="inline-flex items-center rounded-md bg-gray-50 px-2 py-1 text-xs font-medium text-gray-600 ring-1 ring-inset ring-gray-500/10">
+                            슬로베니아
+                        </span>
+                    </div>
+                    <div className="mt-4 text-sm text-gray-700 whitespace-pre-wrap leading-relaxed">
+                        {DOCUMENT_1}
+                    </div>
+                </div>
+
+                {/* Card 2: 프리미엄 미드 음료 */}
+                <div className="bg-white rounded-xl shadow-sm p-6">
+                    <h2 className="text-lg font-semibold text-gray-900">
+                        프리미엄 미드 음료
+                    </h2>
+                    <div className="mt-2 flex items-center gap-2">
+                        <span className="inline-flex items-center rounded-md bg-blue-50 px-2 py-1 text-xs font-medium text-blue-700 ring-1 ring-inset ring-blue-600/20">
+                            HS 2206.00.90
+                        </span>
+                        <span className="inline-flex items-center rounded-md bg-gray-50 px-2 py-1 text-xs font-medium text-gray-600 ring-1 ring-inset ring-gray-500/10">
+                            슬로베니아
+                        </span>
+                    </div>
+                    <div className="mt-4 text-sm text-gray-700 whitespace-pre-wrap leading-relaxed">
+                        {DOCUMENT_2}
+                    </div>
+                </div>
+            </div>
+        </div>
     );
 }
 
