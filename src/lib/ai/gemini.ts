@@ -7,8 +7,8 @@ import {
   MODIFICATION_PROMPT,
 } from './prompts';
 
-const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
-const MODEL = 'gemini-2.5-flash-preview-05-20';
+const ai = new GoogleGenAI({ apiKey: process.env.GOOGLE_API_KEY });
+const MODEL = 'gemini-3-flash-preview';
 
 class GeminiService implements AIService {
   async classifyProduct(text: string): Promise<string | null> {
