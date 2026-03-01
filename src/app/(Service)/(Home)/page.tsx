@@ -111,28 +111,64 @@ export default function Home() {
     };
 
     return (
-        <div className="relative z-20 w-full h-full flex items-center">
-            <div className="flex flex-col h-full ml-auto">
-                <div className="my-auto mx-auto font-IBMPlexSansKRSemiBold text-4xl text-slate-700 text-center">UNTBT입니다, 무엇을 도와드릴까요?</div>
-                <SearchInput onChangeSearchText={onChangeSearchText} onClickSearchButton={onClickSearchButton} />
-                <button onClick={onClickSearchButton} className="my-auto mx-auto w-full font-PretendardMedium hover:bg-blue-700 bg-blue-600 text-white rounded-full p-3">
-                    검색
+        <div className="relative z-20 w-full min-h-full flex flex-col items-center px-6 py-12">
+            {/* Top section: Title */}
+            <div className="text-center mb-10">
+                <h1 className="text-4xl font-IBMPlexSansKRSemiBold text-slate-800 mb-3">
+                    TBT 통관 분석
+                </h1>
+                <p className="text-lg text-gray-500 font-PretendardRegular">
+                    제품 문서를 입력하면 무역 장벽 규정과의 적합성을 분석합니다.
+                </p>
+            </div>
+
+            {/* Input area: Full-width card */}
+            <div className="w-full max-w-4xl bg-white rounded-xl shadow-sm p-6 mb-8">
+                <SearchInput onChangeSearchText={onChangeSearchText} />
+                <button
+                    onClick={onClickSearchButton}
+                    disabled={loading}
+                    className="mt-4 w-full font-PretendardMedium hover:bg-blue-700 bg-blue-600 text-white rounded-xl py-3 px-6 transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
+                >
+                    {loading ? '분석 중...' : '분석하기'}
                 </button>
             </div>
-            <div className="relative top-4 h-[586px] p-6 ml-auto w-1/4 flex flex-col">
-                <div className="z-20 absolute left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2">{loading && <CircleLoading />}</div>
-                <div className="text-2xl h-16 flex justify-center items-center font-IBMPlexSansKRSemiBold text-center text-slate-700">
-                    <p>분석 결과</p>
+
+            {/* Results section */}
+            {!isInitial && (
+                <div className="w-full max-w-4xl relative">
+                    {/* Loading overlay */}
+                    {loading && (
+                        <div className="absolute inset-0 z-30 flex items-center justify-center bg-white/60 rounded-xl">
+                            <CircleLoading />
+                        </div>
+                    )}
+
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        {/* Left card: Analysis result */}
+                        <div className="bg-white rounded-xl shadow-sm p-6 flex flex-col">
+                            <h2 className="text-xl font-IBMPlexSansKRSemiBold text-slate-700 mb-4 text-center">
+                                분석 결과
+                            </h2>
+                            <div className="flex-1 bg-gray-50 rounded-lg p-4 text-gray-700 font-PretendardRegular text-sm leading-relaxed whitespace-pre-wrap overflow-y-auto max-h-[400px]">
+                                {report || '분석 결과가 여기에 표시됩니다.'}
+                            </div>
+                        </div>
+
+                        {/* Right card: Feedback */}
+                        <div className="bg-white rounded-xl shadow-sm p-6 flex flex-col">
+                            <h2 className="text-xl font-IBMPlexSansKRSemiBold text-slate-700 mb-4 text-center">
+                                피드백
+                            </h2>
+                            <div className="flex-1 bg-gray-50 rounded-lg p-4 text-gray-700 font-PretendardRegular text-sm leading-relaxed overflow-y-auto max-h-[400px]">
+                                {removedDoc
+                                    ? emphasizeDoc(originalDoc, removedDoc)
+                                    : result || '피드백이 여기에 표시됩니다.'}
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <textarea readOnly value={report} className="px-4 py-6 w-full h-full text-center resize-none drop-shadow-lg" />
-            </div>
-            <div className="relative top-4 h-[586px] p-6 w-1/4 flex flex-col">
-                <div className="z-20 absolute left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2">{loading && <CircleLoading />}</div>
-                <div className="text-2xl h-16 flex justify-center items-center font-IBMPlexSansKRSemiBold text-center text-slate-700">
-                    <p>피드백</p>
-                </div>
-                <div className="w-full h-full text-center px-4 py-6 overflow-y-auto overflow-x-clip bg-white">{removedDoc ? emphasizeDoc(originalDoc, removedDoc) : result}</div>
-            </div>
+            )}
         </div>
     );
 }
