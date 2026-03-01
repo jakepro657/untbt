@@ -1,5 +1,4 @@
 "use client"
-import Background from '@/components/layout/Background'
 import React from 'react'
 import TopNavbar from "@/components/layout/TopNavbar";
 
@@ -9,10 +8,9 @@ type Props = {
 
 function MainServiceLayout({ children }: Props) {
     return (
-        <main className="flex flex-col justify-center items-center w-full h-full bg-gray-50 overflow-clip">
+        <main className="flex flex-col w-full min-h-screen bg-gray-50">
             <TopNavbar />
-            <Background />
-            <div className="select-none flex flex-col justify-start items-center w-full h-full overflow-y-scroll scrollbar-hide font-IBMPlexSansKRSemiBold overflow-x-clip">
+            <div className="flex flex-col flex-1 w-full">
                 {children}
             </div>
         </main>
