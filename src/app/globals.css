@@ -1,6 +1,10 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+
+@theme {
+  --font-PretendardRegular: "PretendardRegular", sans-serif;
+  --font-PretendardMedium: "PretendardMedium", sans-serif;
+  --font-IBMPlexSansKRSemiBold: "IBMPlexSansKRSemiBold", sans-serif;
+}
 
 * {
   margin: 0;
